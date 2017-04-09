@@ -1,6 +1,14 @@
 // Include Server Dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
+var config = require('./config.js')
+
+var mysql = require("mysql");
+
+var connection = mysql.createConnection(config);
+
+
+
 
 // Create Instance of Express
 var app = express();
@@ -18,6 +26,13 @@ app.use(express.static("./public"));
 app.get("/", function(req, res) {
   res.sendFile(__dirname + "/public/index.html");
 });
+
+//SQL Query Testing.
+    connection.query('SELECT * FROM appraiseless.prop LIMIT 1;', function(error, results, fields) {
+        console.log(results)
+		});
+
+
 
 // Listener
 app.listen(PORT, function() {

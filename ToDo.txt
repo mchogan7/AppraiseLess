@@ -1,0 +1,15 @@
+Things to do:
+
+Major Tasks:
+
+1. Get DB ready - Mills
+2. Design SQL Query - Everyone
+3. Fully pseudo code entire site UI - Everyone
+3. Fully design Visual UI - Mills
+4. Get google Maps API working with react - Evan
+5. Get chart.js working with react - Mills
+6. Create helper functions to calculate future appraisal/tax rates. -Evan 
+7. Setup backend routes
+8. Setup email sending capabilty.
+9. Create model to save user emails (when they opt in)
+10. Figure best method to build and deploy to AWS or Digital Ocean
