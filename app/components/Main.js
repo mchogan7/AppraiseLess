@@ -1,6 +1,8 @@
 // Include React
 var React = require("react");
 
+var SearchBar = require("./children/SearchBar");
+
 // Creating the Main component
 var Main = React.createClass({
 
@@ -10,7 +12,9 @@ var Main = React.createClass({
 
   render: function() {
     return (
-     <h1>Let's do this</h1>
+     <div>
+     <SearchBar/>
+     </div>
     );
   }
 });
