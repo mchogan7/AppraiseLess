@@ -1,24 +1,23 @@
 // Include React
 var React = require("react");
 
-var LandingPage = require("./LandingPage");
+var SearchBar = require("./children/SearchBar");
 
 // Creating the Main component
-var Main = React.createClass({
+var LandingPage = React.createClass({
 
   getInitialState: function() {
-    //this is not used yet.
     return { searchTerm: "", results: [], history: [] };
   },
 
   render: function() {
     return (
      <div>
-    {this.props.children}
+     <SearchBar/>
      </div>
     );
   }
 });
 
 // Export the component back for use in other files
-module.exports = Main;
+module.exports = LandingPage;
