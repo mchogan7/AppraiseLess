@@ -1,6 +1,14 @@
 // Include React
 var React = require("react");
 var helpers = require("../utils/helpers");
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link
+} from 'react-router-dom'
+
+
 var AutocompleteResult = require("./AutocompleteResult");
 
 var SearchBar = React.createClass({
@@ -31,16 +39,17 @@ var SearchBar = React.createClass({
   },
 
   handleSubmit: function(event) {
-    // prevent the HTML from trying to submit a form if the user hits "Enter" instead of
-    // clicking the button
+
     event.preventDefault();
 
     // Set the parent to have the search term
     this.props.setTerm(this.state.term);
     this.setState({ term: "" });
   },
-  // Here we describe this component's render method
+
   render: function() {
+    var sendResults = this.props.sendResults
+    var routerSend = this.props.router
     return (
             <div className="autoSearchBar">
               <input
@@ -54,7 +63,9 @@ var SearchBar = React.createClass({
               <div className='autoCompleteHolder'>
                  {this.state.autoResults.map(function(result, i) {
                      return (
-              <AutocompleteResult key ={i} address={result}/>
+      
+              <AutocompleteResult key ={i} address={result} sendResults={sendResults}/>
+     
             );
           })}
               </div>
@@ -62,6 +73,8 @@ var SearchBar = React.createClass({
     );
   }
 });
+
+
 
 // Export the component back for use in other files
 module.exports = SearchBar;

@@ -13,23 +13,18 @@ var helper = {
         return response.data
     });
   },
+  //this function sends the search parameters to the server to run the query.
     getMainSearch: function(search) {
-      console.log('send')
     return axios.get('/mainSearch', {
       params: {
         search
       }
-    }).then(function(response) {
-       var searchResults = response.data.sort(function(a, b) {
-    return a.appraised_val - b.appraised_val;
-});
-
-        console.log(searchResults)
-    });
-  },
+    })
+},
   //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
   formatParams: function(object){
     var formatted = {
+      address: object.address,
       xcoord: object.xcoord,
       ycoord: object.ycoord,
       valueLow: Math.floor(object.appraised_val * .65),

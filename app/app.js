@@ -1,13 +1,15 @@
 var React = require("react");
 var ReactDOM = require("react-dom");
-import {Router, Route} from 'react-router';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 
-var routes = require("./config/routes");
+var Main = require("./components/Main");
 
-
-//The magic happens in the routes file^
-ReactDOM.render(routes, document.getElementById("app"));
+ReactDOM.render(<Main />, document.getElementById("app"));
 
 
 
