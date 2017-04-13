@@ -4,8 +4,13 @@ import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link
+  Link,
+  Redirect
 } from 'react-router-dom'
+ 
+ import { withRouter } from 'react-router'
+
+
 
 var LandingPage = require("./LandingPage");
 var ResultsPage = require("./ResultsPage");
@@ -25,17 +30,21 @@ var Main = React.createClass({
         searchResults: results});
   },
 
+
+
   render: function() {
     return (
       <Router>
     <div>
+     <Redirect to="/home"/>
      <Switch>
 
    {/* This is the main routes setup. You can pass props in the component after the render statement.*/}
 
  {/* Route for the landing page.*/}
-     <Route path='/' render={(props) => (
-    <LandingPage sendResults={this.sendSearchResults} {...props} />
+     <Route path='/home' render={(props) => (
+    <LandingPage sendResults={this.sendSearchResults} nav={this.navigateTo} {...props} />
+
     )} />
 
  {/* Route for the results page. The map and selection bar will be within this component*/}

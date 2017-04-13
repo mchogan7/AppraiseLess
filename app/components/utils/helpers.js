@@ -35,7 +35,13 @@ var helper = {
       landHigh: Math.floor(object.legal_acreage * 2)
     }
     return formatted
-  }
+  },
+
+  //This is a shameless Stackoverflow copy-paste job.
+  toTitleCase: function(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
 
 };
 

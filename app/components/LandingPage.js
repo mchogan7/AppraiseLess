@@ -10,10 +10,14 @@ var LandingPage = React.createClass({
     return { searchTerm: "", results: [], history: [] };
   },
 
+    navigateTo: function(){
+    this.props.history.push('/resultsPage')
+  },
+
   render: function() {
     return (
      <div>
-     <SearchBar sendResults={this.props.sendResults} router={this.props.router}/>
+     <SearchBar sendResults={this.props.sendResults} router={this.props.router} nav={this.navigateTo}/>
      </div>
     );
   }

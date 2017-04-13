@@ -1,23 +1,40 @@
 // Include React
 var React = require("react");
 var helpers = require("../utils/helpers");
+var LandingPage = require("../LandingPage");
+
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from 'react-router-dom'
+
+
 
 
 
 
 var AutoCompleteResult = React.createClass({
 
-  handleClick: function(send, sendResults) {
+
+
+  handleClick: function(send, sendResults, nav) {
       helpers.getMainSearch(send).then(function(response) {
           //Sorting the search results in the SQL query is super slow for some reason. Handling it here:
           var results = response.data.sort(function(a, b) {
-              a.appraised_val - b.appraised_val;
+             return a.appraised_val - b.appraised_val;
             
           })
-            console.log(results)
+
+          console.log(results)
             sendResults(send, results)
+            nav()
+            
       })
        },
+
 
 
 
@@ -25,9 +42,8 @@ var AutoCompleteResult = React.createClass({
   render: function() {
     var send = helpers.formatParams(this.props.address)
     return (
-            <div className="autoSearchResult" onClick={() => {this.handleClick(send, this.props.sendResults);}}>
+            <div className="autoSearchResult" onClick={() => {this.handleClick(send, this.props.sendResults, this.props.nav);}}>
             <p>{this.props.address.address}</p>
-            <p>{this.props.address.xcoord}</p>
             </div>
     );
   }

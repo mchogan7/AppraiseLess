@@ -61,9 +61,10 @@ app.get("/mainSearch", function(req, res) {
     ]
     console.log(params)
       connection.query(mainQuery, params, function(error, results, fields) {
-      	console.log(results)
       res.send(results)
+      if(error){
       console.log(error)
+  }
 });
 });
 

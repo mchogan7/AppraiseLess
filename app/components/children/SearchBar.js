@@ -49,7 +49,7 @@ var SearchBar = React.createClass({
 
   render: function() {
     var sendResults = this.props.sendResults
-    var routerSend = this.props.router
+    var nav = this.props.nav
     return (
             <div className="autoSearchBar">
               <input
@@ -64,7 +64,7 @@ var SearchBar = React.createClass({
                  {this.state.autoResults.map(function(result, i) {
                      return (
       
-              <AutocompleteResult key ={i} address={result} sendResults={sendResults}/>
+              <AutocompleteResult key ={i} address={result} sendResults={sendResults} nav={nav}/>
      
             );
           })}

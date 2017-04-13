@@ -1,7 +1,7 @@
 // Include React
 var React = require("react");
 
-
+var ResultsSideBar = require("./children/ResultsSideBar");
 // Creating the Main component
 var ResultsPage = React.createClass({
 
@@ -13,7 +13,7 @@ var ResultsPage = React.createClass({
   	console.log(this.props)
     return (
      <div>
-     WORKING!
+     <ResultsSideBar results = {this.props.results}/>
   
      
      </div>
