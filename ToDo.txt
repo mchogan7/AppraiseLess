@@ -8,7 +8,7 @@ Major Tasks:
 3. Fully design Visual UI - Mills
 4. Get google Maps API working with react - Evan
 5. Get chart.js working with react - Mills
-6. Create helper functions to calculate future appraisal/tax rates. -Evan 
+6. Create helper functions to calculate future appraisal/tax rates. -Evan
 7. Setup backend routes
 8. Setup email sending capabilty.
 9. Create model to save user emails (when they opt in)

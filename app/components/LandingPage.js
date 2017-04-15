@@ -2,6 +2,7 @@
 var React = require("react");
 
 var SearchBar = require("./children/SearchBar");
+var Gmap = require("./children/Map2")
 
 // Creating the Main component
 var LandingPage = React.createClass({
@@ -18,6 +19,7 @@ var LandingPage = React.createClass({
     return (
      <div>
      <SearchBar sendResults={this.props.sendResults} router={this.props.router} nav={this.navigateTo}/>
+     <Gmap />
      </div>
     );
   }
