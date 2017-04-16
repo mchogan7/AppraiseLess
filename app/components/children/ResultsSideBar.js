@@ -13,7 +13,7 @@ var ResultsSideBar = React.createClass({
   render: function() {
   	var results = this.props.results
     return (
-     <div>
+     <div className="sideBarContainer">
          {results.map(function(result, i) {
                      return (
       

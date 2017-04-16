@@ -12,6 +12,9 @@
 	red: rgb(201,30,0);
 	green: rgb(40,199,142);
 */
+body {
+	width: 100vw;
+}
 
 .searchContainer {
 	width: 100%;
@@ -104,4 +107,17 @@
 	display: inline;
 	height: 30px;
 	opacity: .1;
+}
+
+.sideBarContainer {
+	width: 400px;
+	background-color: rgb(225,225,225);
+	height: 100vh;
+	float: left;
+	overflow-y: auto;
+}
+
+.mapContainer {
+	height: 100vh;
+	margin-left: 400px;
 }
