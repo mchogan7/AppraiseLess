@@ -113,6 +113,11 @@ app.get("/mainSearch", function(req, res) {
 
 
 // Listener
+app.get('*', function(req, res) {
+    res.redirect('/');
+});
+
+
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
 });

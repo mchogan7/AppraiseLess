@@ -3,7 +3,8 @@ var React = require("react");
 
 var SearchBar = require("./children/SearchBar");
 
-// Creating the Main component
+
+
 var LandingPage = React.createClass({
 
   getInitialState: function() {
@@ -16,8 +17,13 @@ var LandingPage = React.createClass({
 
   render: function() {
     return (
-     <div>
+     <div className='searchContainer'>
+     <img src="./images/AppraiseLessHorz.svg" className='landingLogo'/>
+     <h2 className='tagline'>Let us help you lower your property taxes.</h2>
      <SearchBar sendResults={this.props.sendResults} router={this.props.router} nav={this.navigateTo}/>
+     <div className='footer'>
+     Will put some legal stuff down here. AppraiseLess 2017.
+     </div>
      </div>
     );
   }

@@ -43,7 +43,10 @@ var AutoCompleteResult = React.createClass({
     var send = helpers.formatParams(this.props.address)
     return (
             <div className="autoSearchResult" onClick={() => {this.handleClick(send, this.props.sendResults, this.props.nav);}}>
-            <p>{this.props.address.address}</p>
+            <div className='autoResultHolder'>
+            <img src="./images/ArrowWlead.svg" className='autoResultArrow'/>
+            <p className='autoText'>{this.props.address.address}</p>
+            </div>
             </div>
     );
   }

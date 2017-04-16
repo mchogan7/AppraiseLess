@@ -16,7 +16,9 @@ var SearchBar = React.createClass({
   
 
   getInitialState: function() {
-    return { address: "", autoResults: [] };
+    return { address: "Enter address...", 
+            autoResults: []
+     };
   },
 
   // This function will respond to the user inpu
@@ -47,20 +49,28 @@ var SearchBar = React.createClass({
     this.setState({ term: "" });
   },
 
+    //Clears out the search bar when clicked.
+    handleClick: function(event) {
+      if(this.state.address === 'Enter address...'){
+    this.setState({ address: "" });
+  }
+  },
+
   render: function() {
     var sendResults = this.props.sendResults
     var nav = this.props.nav
+    var autoResults = this.state.autoResults.length > 0
     return (
             <div className="autoSearchBar">
               <input
-                value={this.state.term}
+                className='searchInput'
+                value={this.state.address}
                 type="text"
                 id="address"
                 onChange={this.handleChange}
-                required
+                onClick={this.handleClick}
               />
-              <br />
-              <div className='autoCompleteHolder'>
+              <div className='autoCompleteHolder' style={autoResults ? {'paddingTop': '7px', 'backgroundColor' : 'rgb(225,225,225)' } : {'paddingTop': '0px'} }>
                  {this.state.autoResults.map(function(result, i) {
                      return (
       
