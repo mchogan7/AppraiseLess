@@ -56,6 +56,19 @@ body {
 	margin-bottom: 0px;
 }
 
+.searchInputResults {
+	display: block;
+	margin: auto;
+	width: 452px;
+	height: 50px;
+	font-weight: 400;
+	font-size: 20px;
+	font-family: 'Open Sans', sans-serif;
+	padding-left: 15px;
+	color: rgb(78,78,78); 
+	margin-bottom: 0px;
+}
+
 .tagline {
 	text-align: center;
 	font-family: 'Open Sans', sans-serif;
@@ -213,8 +226,8 @@ h3 {
 	position: absolute;
 	float: left;
 	z-index: 9999;
-	margin-left: 0px;
-	width: 483px;
+	margin-left: 7px;
+	width: 469px;
 }
 
 .blackOut {

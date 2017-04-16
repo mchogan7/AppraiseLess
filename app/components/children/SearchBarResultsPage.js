@@ -73,7 +73,7 @@ var SearchBar = React.createClass({
     return (
             <div className="autoSearchBarResults">
               <input
-                className='searchInput'
+                className='searchInputResults'
                 value={this.state.address}
                 type="text"
                 id="address"
