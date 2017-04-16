@@ -49,7 +49,11 @@ var Main = React.createClass({
 
  {/* Route for the results page. The map and selection bar will be within this component*/}
      <Route path='/resultsPage' render={(props) => (
-    <ResultsPage results={this.state.searchResults} home={this.state.home} {...props} />
+    <ResultsPage results={this.state.searchResults} 
+                 home={this.state.home} {...props}
+                 sendResults={this.sendSearchResults}
+                 nav={this.navigateTo}
+                  />
     )} />
 
   

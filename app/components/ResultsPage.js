@@ -4,6 +4,7 @@ var React = require("react");
 var ResultsSideBar = require("./children/ResultsSideBar");
 var GoogleMap = require("./children/Map");
 
+
 var ResultsPage = React.createClass({
 
   getInitialState: function() {
@@ -11,10 +12,11 @@ var ResultsPage = React.createClass({
   },
 
   render: function() {
-  	console.log(this.props)
     return (
      <div>
-     <ResultsSideBar results = {this.props.results}/>
+     <ResultsSideBar results = {this.props.results}
+                     sendResults={this.props.sendResults}
+                     nav={this.nav}/>
      <GoogleMap/>
      
      </div>

@@ -35,6 +35,14 @@ body {
 	margin-bottom: 0px;
 }
 
+.autoSearchBarResults {
+	position: relative;
+	z-index: 9400;
+	display: block;
+	width: 482px;
+	margin-bottom: 0px;
+}
+
 .searchInput {
 	display: block;
 	margin: auto;
@@ -199,4 +207,21 @@ h3 {
 
 .propArrow:hover {
 	transform: rotate(90deg);
+}
+
+.autoCompleteHolderResults {
+	position: absolute;
+	float: left;
+	z-index: 9999;
+	margin-left: 0px;
+	width: 483px;
+}
+
+.blackOut {
+	position: absolute;
+	z-index: 9000;
+	width: 500px;
+	background-color: black;
+	opacity: .8;
+	height: 100vh;
 }
