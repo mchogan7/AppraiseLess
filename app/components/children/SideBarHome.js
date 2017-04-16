@@ -12,7 +12,7 @@ var SideBarHome = React.createClass({
     return (
      <div className='sideBarPropHolder'>
         <div className='sideBarProp'>
-        <div className='numberHolder'>1</div>
+        <div className='numberHolderHome'>1</div>
         <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
         <div className='propMarket'>Market: ${(this.props.info.appraised_val).toLocaleString()}</div>
         <div className='oneThird propInfo'>Year Built: {this.props.info.yr_built}</div>

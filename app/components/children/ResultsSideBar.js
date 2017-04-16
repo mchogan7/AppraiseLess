@@ -2,6 +2,7 @@
 var React = require("react");
 
 var SideBarProperty = require("./SideBarProperty");
+var SideBarHome = require("./SideBarHome");
 var SearchBarResultsPage = require("./SearchBarResultsPage");
 
 // Creating the Main component
@@ -34,9 +35,9 @@ var ResultsSideBar = React.createClass({
                             blackout={this.blackify}
                             searchActive={this.state.searchActive}
                             />
+              <SideBarHome />
          {results.map(function(result, i) {
                      return (
-      
               <SideBarProperty key ={'sideresults' + i} info={result}/>
      
             );
