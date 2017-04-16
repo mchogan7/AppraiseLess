@@ -13,13 +13,13 @@ class SimpleMap extends Component {
     return (
       <div className='mapContainer'>
       <GoogleMapReact
-        defaultCenter={{lat: 59.95, lng: 30.33}}
-        defaultZoom={11}
+        defaultCenter={{lat: 30.45025, lng: -97.63138}}
+        defaultZoom={12}
       >
         <AnyReactComponent
-          lat={59.955413}
-          lng={30.337844}
-          text={'Kreyser Avrora'}
+          lat={30.45025}
+          lng={-97.63138}
+          text={'HOOAH'}
         />
       </GoogleMapReact>
       </div>
