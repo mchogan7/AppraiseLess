@@ -20,7 +20,7 @@ var AutoCompleteResult = React.createClass({
 
 
 
-  handleClick: function(send, sendResults, nav, location, reset, blackout) {
+  handleClick: function(send, sendResults, nav, location, reset, blackout, home) {
       helpers.getMainSearch(send).then(function(response) {
           //Sorting the search results in the SQL query is super slow for some reason. Handling it here:
           var results = response.data.sort(function(a, b) {
@@ -28,8 +28,11 @@ var AutoCompleteResult = React.createClass({
             
           })
 
-          console.log(results)
-            sendResults(send, results)
+          for (var i = 0; i < results.length; i++) {
+            results[i].status = 'store'
+          }
+            console.log(results)
+            sendResults(home, results)
             if (!location){nav()}
             //This handles the behavior if it is on the results page.
             if (location === 'results'){
@@ -47,12 +50,13 @@ var AutoCompleteResult = React.createClass({
   // Here we describe this component's render method
   render: function() {
     var send = helpers.formatParams(this.props.address)
+    var home = this.props.address
     var location = this.props.location
     var reset = this.props.reset
     var blackout = this.props.blackout
     return (
             <div className="autoSearchResult" 
-            onClick={() => {this.handleClick(send, this.props.sendResults, this.props.nav, location, reset, blackout);}}>
+            onClick={() => {this.handleClick(send, this.props.sendResults, this.props.nav, location, reset, blackout, home);}}>
             <div className='autoResultHolder'>
             <img src="./images/ArrowWlead.svg" className='autoResultArrow'/>
             <p className='autoText'>{this.props.address.address}</p>

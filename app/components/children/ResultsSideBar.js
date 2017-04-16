@@ -23,6 +23,7 @@ var ResultsSideBar = React.createClass({
   render: function() {
   	var results = this.props.results
     var sendResults = this.props.sendResults
+    var home = this.props.home
     return (
      <div className="sideBarContainer">
         {this.state.searchActive &&
@@ -35,10 +36,10 @@ var ResultsSideBar = React.createClass({
                             blackout={this.blackify}
                             searchActive={this.state.searchActive}
                             />
-              <SideBarHome />
+              <SideBarHome home = {this.props.home} />
          {results.map(function(result, i) {
                      return (
-              <SideBarProperty key ={'sideresults' + i} info={result}/>
+              <SideBarProperty key ={'sideresults' + i} info={result} home = {home}/>
      
             );
           })}

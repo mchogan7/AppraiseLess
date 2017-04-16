@@ -16,7 +16,9 @@ var ResultsPage = React.createClass({
      <div>
      <ResultsSideBar results = {this.props.results}
                      sendResults={this.props.sendResults}
-                     nav={this.nav}/>
+                     nav={this.nav}
+                     home={this.props.home}
+                     />
      <GoogleMap/>
      
      </div>
