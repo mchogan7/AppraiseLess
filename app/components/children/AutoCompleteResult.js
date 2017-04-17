@@ -22,6 +22,7 @@ var AutoCompleteResult = React.createClass({
 
   handleClick: function(send, sendResults, nav, location, reset, blackout, home) {
       helpers.getMainSearch(send).then(function(response) {
+        console.log(response)
           //Sorting the search results in the SQL query is super slow for some reason. Handling it here:
           var results = response.data.sort(function(a, b) {
              return a.appraised_val - b.appraised_val;
@@ -30,7 +31,20 @@ var AutoCompleteResult = React.createClass({
 
           for (var i = 0; i < results.length; i++) {
             results[i].status = 'store'
-          }
+            //Each property will only have 1 set of land/building values.
+            if(results[i].imprv_hstd_val > results[i].imprv_non_hstd_val){
+              results[i].building = results[i].imprv_hstd_val 
+            } else {
+              results[i].building = results[i].imprv_non_hstd_val 
+            }
+
+              if(results[i].land_hstd_val > results[i].land_non_hstd_val){
+              results[i].land = results[i].land_hstd_val
+            } else {
+              results[i].land = results[i].land_non_hstd_val 
+            }
+
+        }
             console.log(results)
             sendResults(home, results)
             if (!location){nav()}
@@ -40,6 +54,8 @@ var AutoCompleteResult = React.createClass({
               blackout(false)
 
             }
+
+
             
       })
        },

@@ -171,6 +171,9 @@ body {
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
 	transition: background-color .2s;
 	cursor: pointer;
+	transition: height .5s;
+	overflow-y: hidden;
+	overflow-x: hidden;
 }
 
 h3 {
@@ -239,12 +242,12 @@ h3 {
 	width: 30px;
 	opacity: .1;
 	transform: rotate(0deg);
-	transition: transform .2s
+	transition: transform .5s
 }
 
-.propArrow:hover {
+/*.propArrow:hover {
 	transform: rotate(90deg);
-}
+}*/
 
 .autoCompleteHolderResults {
 	position: absolute;
@@ -261,4 +264,39 @@ h3 {
 	background-color: black;
 	opacity: .8;
 	height: 100vh;
+}
+
+.dismissButton {
+	cursor: pointer;
+	text-align: center;
+	background-color: rgb(201,30,0);
+	color: white;
+	position: absolute;
+	top: 128px;
+	left: 7px;
+	height: 30px;
+	width: 224px;
+	line-height: 30px;
+
+}
+
+.saveButton {
+	cursor: pointer;
+	text-align: center;
+	background-color: rgb(40,199,142);
+	color: white;
+	position: absolute;
+	top: 128px;
+	right: 7px;
+	height: 30px;
+	width: 224px;
+	line-height: 30px;
+}
+
+.saveButton:hover{
+	background-color: rgb(60,220,160); 
+}
+
+.dismissButton:hover{
+	background-color: rgb(220,50,0);
 }

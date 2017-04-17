@@ -35,6 +35,7 @@ var Main = React.createClass({
   },
 
   componentDidUpdate: function(prevProps, prevState) {
+    console.log(this.state.searchResults.length)
     if (this.state.searchCounter < 10) {
        for (var i = 0; i < this.state.searchResults.length; i++) {
            if (this.state.searchResults[i].status === "store" ) {

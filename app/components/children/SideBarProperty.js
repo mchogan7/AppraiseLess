@@ -7,9 +7,12 @@ var helpers = require("../utils/helpers");
 // Creating the Main component
 var SideBarProperty = React.createClass({
   getInitialState: function() {
-    return { searchActive: false };
+    return { searchActive: false,
+              toggleHeight: {height:'50px'},
+              rotate: {transform: 'rotate(0deg)'}, 
+              toggle: false};
   },
-  
+  //Functions compares two values and returns a color.
   compare: function(val1, val2){
     if (val1 < val2){
       return {color: "rgb(40,199,142)"}
@@ -20,7 +23,20 @@ var SideBarProperty = React.createClass({
     }
   },
 
+  toggle: function(){
+    if (this.state.toggle === true){
+      this.setState({toggle:false, toggleHeight: {height:'50px'}, rotate: {transform: 'rotate(0deg)'} })
+    } else {
+      this.setState({toggle:true, toggleHeight: {height:'150px'}, rotate: {transform: 'rotate(90deg)'}})
+    }
+  },
+
+  handleClick: function(){
+    this.toggle()
+  },
+
   render: function() {
+    //Declared these as vars to improve readabilty.
     var propValue = this.props.info.appraised_val
     var homeValue = this.props.home.appraised_val
     var propYear = this.props.info.yr_built
@@ -31,7 +47,7 @@ var SideBarProperty = React.createClass({
     var homeLot = this.props.home.legal_acreage
     return (
      <div className='sideBarPropHolder'>
-        <div className='sideBarProp'>
+        <div className='sideBarProp' style={this.state.toggleHeight} onClick={() => this.handleClick()}>
         <div className='numberHolder'>1</div>
         <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
         
@@ -41,7 +57,9 @@ var SideBarProperty = React.createClass({
         <div className='oneThird propInfo'>Year Built:<span style={this.compare(homeYear, propYear)}> {propYear}</span></div>
         <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
         <div className='oneThird propInfo'><span style={this.compare(homeLot, propLot)}>Lot: {(propLot * .0001).toFixed(4)} acres</span></div>
-        <img src="./images/Arrow.svg" className='propArrow'/>
+        <img src="./images/Arrow.svg" className='propArrow' style={this.state.rotate}/>
+        <div className='dismissButton'>DISMISS FOR NOW</div>
+        <div className='saveButton'>SAVE FOR PROTEST</div>
         </div>
      </div>
     );
