@@ -300,3 +300,17 @@ h3 {
 .dismissButton:hover{
 	background-color: rgb(220,50,0);
 }
+
+.topSpacer {
+	margin-top: 10px;
+}
+
+.tcadLink {
+	font-size: 12px;
+	text-decoration: none;
+	color: rgb(0,115,188);
+}
+
+.tcadLink:hover {
+	color: rgb(0,140,200);
+}

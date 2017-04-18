@@ -58,6 +58,9 @@ var SideBarProperty = React.createClass({
         <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
         <div className='oneThird propInfo'><span style={this.compare(homeLot, propLot)}>Lot: {(propLot * .0001).toFixed(4)} acres</span></div>
         <img src="./images/Arrow.svg" className='propArrow' style={this.state.rotate}/>
+         <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
+         <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
+         <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>
         <div className='dismissButton'>DISMISS FOR NOW</div>
         <div className='saveButton'>SAVE FOR PROTEST</div>
         </div>
