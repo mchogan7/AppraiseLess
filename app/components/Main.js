@@ -54,10 +54,19 @@ var Main = React.createClass({
       this.setState({searchResults: newArray})  
       },
 
-  componentDidUpdate: function(prevProps, prevState) {
-   //componentDidUpdate()
+      //I don't think we need to call componentUpdate functions at all in this case.
+  // componentWillUpdate() {
+  //   
+  //     this.sorter();
+  // },
 
-   //These functions are necessary for array.filter()
+
+  //When the state gets changed React will rerender the entire component based on changes.
+  //If this function is anywhere in the render: function, then it will update.
+  //And it will only update AFTER state has been set, so we don't have to worry about any async issues.
+  sorter: function() {
+
+     //These functions are necessary for array.filter()
    function isStore(value) {
      return value.status === "store";
    };
@@ -73,21 +82,19 @@ var Main = React.createClass({
 
    //Here, we create our variables
    //searchResults[] is merely a copy of this.state.searchResults.
-   var searchResults = this.state.searchResults;
+   var searchResults = this.state.searchResults.slice(); //Added a slice so it duplicates the array instead of modifying it by reference
    //store[], search[], saved[], and dismissed[] are populated using the .filter() method.
-   var store = this.state.searchResults.filter(isStore);
-   var search = this.state.searchResults.filter(isSearch);
-   var saved = this.state.searchResults.filter(isSaved);
-   var dismissed = this.state.searchResults.filter(isDismissed);
-   //somethingChanged is marked true if a new search entry must be created
-   var somethingChanged = false;
+   var store = searchResults.filter(isStore);
+   var search = searchResults.filter(isSearch);
+   var saved = searchResults.filter(isSaved);
+   var dismissed = searchResults.filter(isDismissed);
+
 
 
    //Here, we check to see if we need to fill up search[], i.e., if it contains fewer than 10 objects
    //If it does, we take the appropriate number of "store" objects and make them "search" objects
    //This function should work when search[] has zero objects and when it has 9
    if (search.length < 10) {
-     somethingChanged = true;
      var i = 10 - search.length;
      console.log("i = " + i);
      while (i > 0) {
@@ -107,25 +114,34 @@ var Main = React.createClass({
      }
    }
 
-   console.log("somethingChanged = " + somethingChanged);
-   console.log("searchResults, store, search, saved, and dismissed...");
-   console.log(searchResults);
-   console.log(store);
-   console.log(search);
-   console.log(saved);
-   console.log(dismissed);
-
 
    //At this point, the goal is for all five of our arrays to be accurate
    //Here, we set the state using our five arrays
-   if (somethingChanged) {
-     this.setState((prevState) => {
-       return {search: search, saved: saved, dismissed: dismissed, searchResults: searchResults, store: store};
-     });
-   }
+ 
+
+  //Instead of updating state, we have the function return an object.
+  //This can then be passed down as a prop to wherever it needs to go. (I think)
+  //I have not tried to pass this down as a prop yet, but i think it will work.
+   var sorted = {
+       search: search, 
+       saved: saved, 
+       dismissed: dismissed, 
+       searchResults: searchResults, 
+       store: store
+              }
+    
+              return sorted
+  
  },
 
   render: function() {
+    //Testing it out.
+    var testSearch = this.sorter().search
+    var testSaved = this.sorter().saved
+    var testDismissed = this.sorter().dismissed
+    console.log(testSearch)
+    console.log(testSaved)
+    console.log(testDismissed)
     return (
       <Router>
         <div>
