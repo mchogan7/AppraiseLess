@@ -35,7 +35,7 @@ var ResultsSideBar = React.createClass({
     if (this.state.selectedTab === 'saved'){
       return {marginLeft: '33%', backgroundColor: 'rgb(40,199,142)'}
     }  else if (this.state.selectedTab === 'dismissed'){
-      return {marginLeft: '66%', backgroundColor: 'rgb(201,30,0)'}
+      return {marginLeft: '67%', backgroundColor: 'rgb(201,30,0)'}
     }  else {
       return {marginLeft: '0%', backgroundColor: 'rgb(0,115,188)'}
     }
