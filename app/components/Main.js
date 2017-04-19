@@ -21,10 +21,7 @@ var Main = React.createClass({
   getInitialState: function() {
     return { home: {}, 
             searchResults: [],
-        	store: [],
-        	search: [],
-        	saved: [],
-        	dismissed: []};
+            };
   }, 
 
   //This function is passed as a prop to the landing page. It sets the home values and search results.
@@ -126,11 +123,11 @@ var Main = React.createClass({
        search: search, 
        saved: saved, 
        dismissed: dismissed, 
-       searchResults: searchResults, 
        store: store
               }
     
               return sorted
+        this.setState({searchResults: searchResults})      
   
  },
 
