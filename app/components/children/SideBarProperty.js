@@ -35,6 +35,10 @@ var SideBarProperty = React.createClass({
     this.toggle()
   },
 
+  handleSaveDismissClick: function(status){
+    this.props.changeStatus(this.props.info.PROP_ID, status)
+  },
+
   render: function() {
     //Declared these as vars to improve readabilty.
     var propValue = this.props.info.appraised_val
@@ -61,8 +65,8 @@ var SideBarProperty = React.createClass({
          <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
          <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
          <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>
-        <div className='dismissButton'>DISMISS FOR NOW</div>
-        <div className='saveButton'>SAVE FOR PROTEST</div>
+        <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
+        <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
         </div>
      </div>
     );

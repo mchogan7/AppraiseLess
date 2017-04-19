@@ -46,6 +46,7 @@ var ResultsSideBar = React.createClass({
   	var results = this.props.results
     var sendResults = this.props.sendResults
     var home = this.props.home
+    var changeStatus = this.props.changeStatus  
     return (
      <div className="sideBarContainer">
         {this.state.searchActive &&
@@ -68,7 +69,7 @@ var ResultsSideBar = React.createClass({
               </div>
          {results.map(function(result, i) {
                      return (
-              <SideBarProperty key ={'sideresults' + i} info={result} home = {home}/>
+              <SideBarProperty key ={result.PROP_ID} info={result} home = {home} changeStatus={changeStatus}/>
      
             );
           })}

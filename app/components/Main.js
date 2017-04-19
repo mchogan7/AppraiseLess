@@ -34,6 +34,26 @@ var Main = React.createClass({
       searchResults: results});
   },
 
+  changeStatus: function (id, newStatus){
+
+      //Grab the search results array so we can modify it.
+    var newArray = this.state.searchResults
+      
+      //Gives the findIndex function a target
+      function idMatch(element) {
+      return element.PROP_ID === id
+      }
+
+      //define the index for readabilty
+      var index = newArray.findIndex(idMatch); 
+
+      //update the entry at the found index
+      newArray[index].status = newStatus 
+
+      //write the new array as search results
+      this.setState({searchResults: newArray})  
+      },
+
   componentDidUpdate: function(prevProps, prevState) {
    //componentDidUpdate()
 
@@ -124,6 +144,7 @@ var Main = React.createClass({
                        home={this.state.home} {...props}
                        sendResults={this.sendSearchResults}
                        nav={this.navigateTo}
+                       changeStatus={this.changeStatus}
                         />
             )} />
           </Switch>
