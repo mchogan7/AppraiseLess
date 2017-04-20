@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
-const AnyReactComponent = ({ text }) => <div>{text}</div>;
+var MapMarker = require("./MapMarker");
 
 class SimpleMap extends Component {
   // static defaultProps = {
@@ -10,17 +10,21 @@ class SimpleMap extends Component {
   // };
 
   render() {
+    var sorted = this.props.sorted
     return (
       <div className='mapContainer'>
       <GoogleMapReact
-        defaultCenter={{lat: 30.45025, lng: -97.63138}}
-        defaultZoom={12}
+        defaultCenter={{lat: this.props.home.ycoord, lng: this.props.home.xcoord}}
+        defaultZoom={15}
       >
-        <AnyReactComponent
-          lat={30.45025}
-          lng={-97.63138}
-          text={'HOOAH'}
-        />
+        {sorted.search.map(function(result, i) {
+                     return (
+              <MapMarker key ={result.PROP_ID} indexNumber={i} lat={result.ycoord} lng={result.xcoord}/>
+     
+            );
+          })}
+
+ 
       </GoogleMapReact>
       </div>
     );
