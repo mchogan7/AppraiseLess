@@ -65,7 +65,7 @@ body {
 	font-size: 20px;
 	font-family: 'Open Sans', sans-serif;
 	padding-left: 15px;
-	color: rgb(78,78,78); 
+	color: rgb(189,189,189);
 	margin-bottom: 0px;
 }
 
@@ -131,17 +131,19 @@ body {
 }
 
 .sideBarContainer {
-	width: 500px;
+	position: relative;
+	width: 483px;
 	background-color: rgb(225,225,225);
 	height: 100vh;
 	float: left;
 	overflow-y: auto;
 	box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+	z-index: 4000;
 }
 
 .mapContainer {
 	height: 100vh;
-	margin-left: 500px;
+	margin-left: 483px;
 }
 
 .sideBarPropHolder {
@@ -260,7 +262,7 @@ h3 {
 .blackOut {
 	position: absolute;
 	z-index: 9000;
-	width: 500px;
+	width: 483px;
 	background-color: black;
 	opacity: .8;
 	height: 100vh;
@@ -333,11 +335,37 @@ h3 {
 	width: 33%;
 	height: 3px;
 	background-color: rgb(0,115,188);
-	margin-bottom: 7px;
 	transition: margin-left .2s, background-color .2s;
 }
 
 .tabContainer {
 	padding-left: 7px;
 	padding-right: 7px;
+	border-bottom: solid 1px rgb(189,189,189);;
+}
+
+.tabSpacer {
+	height: 7px;
+}
+
+.reportButton {
+	margin-top: 8px;
+	background-color: rgb(40,199,142);
+	color: white;
+	margin-left: 7px;
+	margin-right: 7px;
+	text-align: center;
+	height: 50px;
+	line-height: 50px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.reportButton:hover{
+	background-color: rgb(60,220,160); 
+}
+
+.divider {
+	border-bottom: solid 1px rgb(189,189,189);
 }

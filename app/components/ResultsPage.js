@@ -19,6 +19,7 @@ var ResultsPage = React.createClass({
                      nav={this.nav}
                      home={this.props.home}
                      changeStatus={this.props.changeStatus}
+                     sorted={this.props.sorted}
                      />
      <GoogleMap/>
      
