@@ -99,7 +99,7 @@ var Main = React.createClass({
        //Go ahead and decrement i
        i--;
        //Pop from store[], push to search[]
-       var newSearchEntry = store.pop(); //Should we be using "dequeue" instead of "pop"???
+       var newSearchEntry = store.shift(); //Should we be using "dequeue" instead of "pop"???
        search.push(newSearchEntry);
        //Find the first "store" object in searchResults[], change its status to "search"
        for (var j = 0; j < searchResults.length; j++) {
