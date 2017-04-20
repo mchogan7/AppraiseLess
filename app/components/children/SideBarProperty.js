@@ -49,10 +49,12 @@ var SideBarProperty = React.createClass({
     var homeFeet = this.props.home.sqFeet
     var propLot = this.props.info.legal_acreage
     var homeLot = this.props.home.legal_acreage
+    var circNumber = this.props.indexNumber
+
     return (
      <div className='sideBarPropHolder'>
         <div className='sideBarProp' style={this.state.toggleHeight} onClick={() => this.handleClick()}>
-        <div className='numberHolder'>1</div>
+        <div className='numberHolder'>{circNumber + 1}</div>
         <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
         
         <div className='propMarket'>

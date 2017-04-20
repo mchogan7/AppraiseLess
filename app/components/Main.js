@@ -127,18 +127,14 @@ var Main = React.createClass({
               }
     
               return sorted
+
+        //somehow this doesn't cause an infinite loop.
         this.setState({searchResults: searchResults})      
   
  },
 
   render: function() {
-    //Testing it out.
-    var testSearch = this.sorter().search
-    var testSaved = this.sorter().saved
-    var testDismissed = this.sorter().dismissed
-    console.log(testSearch)
-    console.log(testSaved)
-    console.log(testDismissed)
+
     return (
       <Router>
         <div>
@@ -158,6 +154,7 @@ var Main = React.createClass({
                        sendResults={this.sendSearchResults}
                        nav={this.navigateTo}
                        changeStatus={this.changeStatus}
+                       sorted={this.sorter()}
                         />
             )} />
           </Switch>

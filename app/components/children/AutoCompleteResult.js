@@ -22,7 +22,7 @@ var AutoCompleteResult = React.createClass({
 
   handleClick: function(send, sendResults, nav, location, reset, blackout, home) {
       helpers.getMainSearch(send).then(function(response) {
-        console.log(response)
+        
           //Sorting the search results in the SQL query is super slow for some reason. Handling it here:
           var results = response.data.sort(function(a, b) {
              return a.appraised_val - b.appraised_val;
@@ -45,7 +45,7 @@ var AutoCompleteResult = React.createClass({
             }
 
         }
-            console.log(results)
+            
             sendResults(home, results)
             if (!location){nav()}
             //This handles the behavior if it is on the results page.
