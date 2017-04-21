@@ -21,7 +21,9 @@ var ResultsPage = React.createClass({
                      changeStatus={this.props.changeStatus}
                      sorted={this.props.sorted}
                      />
-     <GoogleMap sorted={this.props.sorted} home={this.props.home}/>
+     <GoogleMap sorted={this.props.sorted} 
+                home={this.props.home}
+                />
      
      </div>
     );
