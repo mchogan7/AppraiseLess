@@ -369,3 +369,43 @@ h3 {
 .divider {
 	border-bottom: solid 1px rgb(189,189,189);
 }
+
+.mapMarkerContainer {
+	position: relative;
+}
+
+.mapMarker {
+	position: absolute;
+	left: -40px;
+	top: -65px;
+	height: 80px;
+	z-index: 499;
+}
+
+.mapMarkerNumber {
+	width: 30px;
+	font-size: 18px;
+	text-align: center;
+	position: absolute;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: 700;
+	color: rgb(255,202,0); 
+	left: -15px;
+	top: -42px;
+	z-index: 500;
+}
+
+.mapHomeMarker {
+	width: 30px;
+	position: absolute;
+ 	left: -13px;
+	top: -44px;
+	z-index: 500;
+}
+
+.sideBarHomeMarker {
+	position: absolute;
+	height: 28px;
+	left: 5px;
+	top: 3px;
+}

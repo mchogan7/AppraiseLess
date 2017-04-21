@@ -12,7 +12,7 @@ var SideBarHome = React.createClass({
     return (
      <div className='sideBarHomeHolder'>
         <div className='sideBarProp'>
-        <div className='numberHolderHome'>1</div>
+        <div className='numberHolderHome'><img src="./images/WhiteHouse.svg" className='sideBarHomeMarker'/></div>
         <h3>{helpers.toTitleCase(this.props.home.address)}</h3>
         <div className='propMarket'>Market: ${(this.props.home.appraised_val).toLocaleString()}</div>
         <div className='oneThird propInfo'>Year Built: {this.props.home.yr_built}</div>

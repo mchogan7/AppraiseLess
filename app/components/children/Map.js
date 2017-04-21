@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 
 var MapMarker = require("./MapMarker");
+var HomeMarker = require("./HomeMarker");
 
 
 class SimpleMap extends Component {
@@ -16,7 +17,7 @@ class SimpleMap extends Component {
         resetBoundsOnResize = {true}
       >
 
-         <MapMarker indexNumber='home' lat={this.props.home.ycoord} lng={this.props.home.xcoord}/>
+         <HomeMarker indexNumber='home' lat={this.props.home.ycoord} lng={this.props.home.xcoord}/>
 
         {sorted.search.map(function(result, i) {
                      return (
