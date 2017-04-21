@@ -16,8 +16,7 @@ var gray = {color:'rgb(189,189,189)'}
 var ResultsSideBar = React.createClass({
 
   getInitialState: function() {
-    return { searchActive: false,
-             selectedTab: 'search'
+    return { searchActive: false
                  };
   },
 
@@ -29,14 +28,10 @@ var ResultsSideBar = React.createClass({
     this.blackify(false)
   },
 
-  tabSelect: function(selected){
-      this.setState({selectedTab: selected})
-  },
-
   tabSelectorSlider: function(){
-    if (this.state.selectedTab === 'saved'){
+    if (this.props.tab === 'saved'){
       return {marginLeft: '33%', backgroundColor: 'rgb(40,199,142)'}
-    }  else if (this.state.selectedTab === 'dismissed'){
+    }  else if (this.props.tab === 'dismissed'){
       return {marginLeft: '67%', backgroundColor: 'rgb(201,30,0)'}
     }  else {
       return {marginLeft: '0%', backgroundColor: 'rgb(0,115,188)'}
@@ -44,7 +39,7 @@ var ResultsSideBar = React.createClass({
   },
 
   render: function() {
-    var tab = this.state.selectedTab  
+    var tab = this.props.tab  
   	var results = this.props.results
     var sendResults = this.props.sendResults
     var home = this.props.home
@@ -65,9 +60,9 @@ var ResultsSideBar = React.createClass({
 
               <SideBarHome home = {this.props.home} />
               <div className= 'tabContainer'>
-              <div onClick={() => this.tabSelect('search')} className='sideBarTab' style={tab === 'search' ? blue : gray}>SEARCH</div>
-              <div onClick={() => this.tabSelect('saved')}className='sideBarTab' style={tab === 'saved' ? green : gray}>SAVED</div>
-              <div onClick={() => this.tabSelect('dismissed')}className='sideBarTab' style={tab === 'dismissed' ? red : gray}>DISMISSED</div>
+              <div onClick={() => this.props.tabSelect('search')} className='sideBarTab' style={tab === 'search' ? blue : gray}>SEARCH</div>
+              <div onClick={() => this.props.tabSelect('saved')}className='sideBarTab' style={tab === 'saved' ? green : gray}>SAVED</div>
+              <div onClick={() => this.props.tabSelect('dismissed')}className='sideBarTab' style={tab === 'dismissed' ? red : gray}>DISMISSED</div>
               <div className='tabSelector' style={this.tabSelectorSlider()}></div>
               </div>
       <Scrollbars
@@ -82,7 +77,12 @@ var ResultsSideBar = React.createClass({
       {tab === 'search' &&
          sorted.search.map(function(result, i) {
                      return (
-              <SideBarProperty key ={result.PROP_ID} info={result} home = {home} indexNumber={i} changeStatus={changeStatus}/>
+              <SideBarProperty key ={result.PROP_ID} 
+                               info={result} 
+                               home = {home} 
+                               indexNumber={i + 1} 
+                               changeStatus={changeStatus}
+                               color={{backgroundColor: 'rgb(0,115,188)'}}/>
      
             );
           })
@@ -91,7 +91,12 @@ var ResultsSideBar = React.createClass({
       {tab === 'saved' &&
          sorted.saved.map(function(result, i) {
                      return (
-              <SideBarProperty key ={result.PROP_ID} info={result} home = {home} indexNumber={i} changeStatus={changeStatus}/>
+              <SideBarProperty key ={result.PROP_ID} 
+                               info={result} 
+                               home = {home} 
+                               indexNumber={i + 1} 
+                               changeStatus={changeStatus}
+                               color={{backgroundColor: 'rgb(40,199,142)', color: 'white'}}/>
      
             );
           })
@@ -100,7 +105,12 @@ var ResultsSideBar = React.createClass({
       {tab === 'dismissed' &&
          sorted.dismissed.map(function(result, i) {
                      return (
-              <SideBarProperty key ={result.PROP_ID} info={result} home = {home} indexNumber={i} changeStatus={changeStatus}/>
+              <SideBarProperty key ={result.PROP_ID} 
+                               info={result} 
+                               home = {home} 
+                               indexNumber="×"
+                               changeStatus={changeStatus}
+                               color={{backgroundColor: 'rgb(201,30,0)', color: 'white', fontSize: '25px'}}/>
      
             );
           })

@@ -19,9 +19,28 @@ class SimpleMap extends Component {
 
          <HomeMarker indexNumber='home' lat={this.props.home.ycoord} lng={this.props.home.xcoord}/>
 
-        {sorted.search.map(function(result, i) {
+           {this.props.tab === 'search' &&
+        sorted.search.map(function(result, i) {
                      return (
-              <MapMarker key ={result.PROP_ID} indexNumber={i} lat={result.ycoord} lng={result.xcoord}/>
+              <MapMarker key ={result.PROP_ID} 
+                        indexNumber={i} 
+                        lat={result.ycoord} 
+                        lng={result.xcoord}
+                        color={{color: 'rgb(255,202,0)'}}
+                        marker={"./images/BlueMarker.svg"}/>
+     
+            );
+          })}
+
+                 {this.props.tab === 'saved' &&
+        sorted.saved.map(function(result, i) {
+                     return (
+              <MapMarker key ={result.PROP_ID} 
+                         indexNumber={i} 
+                         lat={result.ycoord} 
+                         lng={result.xcoord}
+                         color={{color: 'white'}}
+                         marker={"./images/GreenMarker.svg"}/>
      
             );
           })}

@@ -8,8 +8,8 @@ var MapMarker = React.createClass({
   render: function() {
     return (
      <div className='mapMarkerContainer'>
-     <span className='mapMarkerNumber'>{this.props.indexNumber + 1}</span>
-     <img src="./images/BlueMarker.svg" className='mapMarker'/>
+     <span className='mapMarkerNumber' style={this.props.color}>{this.props.indexNumber + 1}</span>
+     <img src={this.props.marker} className='mapMarker'/>
      </div>
     );
   }
