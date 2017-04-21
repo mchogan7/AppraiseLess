@@ -54,7 +54,7 @@ var SideBarProperty = React.createClass({
     return (
      <div className='sideBarPropHolder'>
         <div className='sideBarProp' style={this.state.toggleHeight} onClick={() => this.handleClick()}>
-        <div className='numberHolder'>{circNumber + 1}</div>
+        <div className='numberHolder' style={this.props.color}>{circNumber}</div>
         <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
         
         <div className='propMarket'>

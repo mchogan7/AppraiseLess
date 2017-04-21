@@ -8,7 +8,11 @@ var GoogleMap = require("./children/Map");
 var ResultsPage = React.createClass({
 
   getInitialState: function() {
-    return { searchTerm: "", results: [], history: [] };
+    return { view: "search"};
+  },
+
+  tabSelect: function(selected){
+      this.setState({view: selected})
   },
 
   render: function() {
@@ -20,9 +24,12 @@ var ResultsPage = React.createClass({
                      home={this.props.home}
                      changeStatus={this.props.changeStatus}
                      sorted={this.props.sorted}
+                     tab={this.state.view}
+                     tabSelect={this.tabSelect}
                      />
      <GoogleMap sorted={this.props.sorted} 
                 home={this.props.home}
+                tab={this.state.view}
                 />
      
      </div>
