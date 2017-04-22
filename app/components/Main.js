@@ -14,6 +14,7 @@ import {
 
 var LandingPage = require("./LandingPage");
 var ResultsPage = require("./ResultsPage");
+var ReportPage = require("./ReportPage");
 
 // Main component. All data is passed through here.
 var Main = React.createClass({
@@ -50,12 +51,6 @@ var Main = React.createClass({
       //write the new array as search results
       this.setState({searchResults: newArray})  
       },
-
-      //I don't think we need to call componentUpdate functions at all in this case.
-  // componentWillUpdate() {
-  //   
-  //     this.sorter();
-  // },
 
 
   //When the state gets changed React will rerender the entire component based on changes.
@@ -144,7 +139,7 @@ var Main = React.createClass({
 
             {/* Route for the landing page.*/}
             <Route path='/home' render={(props) => (
-            <LandingPage sendResults={this.sendSearchResults} nav={this.navigateTo} {...props} />
+            <LandingPage sendResults={this.sendSearchResults} {...props} />
             )} />
 
             {/* Route for the results page. The map and selection bar will be within this component*/}
@@ -152,11 +147,21 @@ var Main = React.createClass({
             <ResultsPage results={this.state.searchResults} 
                        home={this.state.home} {...props}
                        sendResults={this.sendSearchResults}
-                       nav={this.navigateTo}
                        changeStatus={this.changeStatus}
                        sorted={this.sorter()}
                         />
             )} />
+
+            <Route path='/ReportPage' render={(props) => (
+            <ReportPage 
+                       home={this.state.home} {...props}
+                       saved={this.sorter().saved}
+                        />
+            )} />
+
+
+
+
           </Switch>
         </div>
       </Router>

@@ -108,9 +108,9 @@ var ResultsSideBar = React.createClass({
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
                                home = {home} 
-                               indexNumber="×"
+                               indexNumber="-"
                                changeStatus={changeStatus}
-                               color={{backgroundColor: 'rgb(201,30,0)', color: 'white', fontSize: '25px'}}/>
+                               color={{backgroundColor: 'rgb(201,30,0)', color: 'white', fontSize: '40px', lineHeight: '25px'}}/>
      
             );
           })
@@ -118,7 +118,7 @@ var ResultsSideBar = React.createClass({
       
       </Scrollbars>
       <div className='divider'></div>
-     <div className='reportButton'>GENERATE PROTEST</div>
+     <div className='reportButton' onClick={() => this.props.nav('/ReportPage')}>GENERATE PROTEST</div>
      </div>
     );
   }

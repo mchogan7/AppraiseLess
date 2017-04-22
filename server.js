@@ -42,7 +42,7 @@ app.get("/autocomplete", function(req, res) {
 //The main query. The parameters are calculated client side before being sent over.
 
 //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
-var mainQuery = 'SELECT coords.PROP_ID, coords.xcoord, prop.imprv_hstd_val, prop.land_hstd_val, coords.ycoord, prop.legal_acreage, prop.imprv_non_hstd_val, prop.land_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, building.yr_built, building.sqFeet, ( 3959 * acos( cos( radians(?) ) * cos( radians( coords.ycoord ) ) * cos( radians( coords.xcoord ) - radians(?) ) + sin( radians(?) ) * sin(radians(coords.ycoord)) ) )AS distance FROM coords LEFT JOIN prop ON coords.PROP_ID = prop.prop_id LEFT JOIN building ON coords.PROP_ID = building.prop_id HAVING distance < 1 AND appraised_val BETWEEN ? AND ? AND sqFeet BETWEEN ? AND ? AND legal_acreage BETWEEN ? AND ? ORDER BY distance LIMIT 1 , 100;'
+var mainQuery = 'SELECT coords.PROP_ID, coords.xcoord, prop.imprv_hstd_val, prop.land_hstd_val, coords.ycoord, prop.legal_acreage, prop.imprv_non_hstd_val, prop.land_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, building.yr_built, building.sqFeet, ( 3959 * acos( cos( radians(?) ) * cos( radians( coords.ycoord ) ) * cos( radians( coords.xcoord ) - radians(?) ) + sin( radians(?) ) * sin(radians(coords.ycoord)) ) )AS distance FROM coords LEFT JOIN prop ON coords.PROP_ID = prop.prop_id LEFT JOIN building ON coords.PROP_ID = building.prop_id HAVING distance < 1 AND appraised_val BETWEEN ? AND ? AND sqFeet BETWEEN ? AND ? AND legal_acreage BETWEEN ? AND ? ORDER BY distance LIMIT 1 , 200;'
 
 
 app.get("/mainSearch", function(req, res) {
