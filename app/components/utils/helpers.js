@@ -21,6 +21,17 @@ var helper = {
       }
     })
 },
+
+  sendReport: function(email) {
+    console.log('w00t!')
+    return axios.post('/emailReport', {
+      params: {
+        email: email
+      }
+    }).then(function(response) {
+        return response.data
+    });
+  },
   //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
   formatParams: function(object){
     var formatted = {

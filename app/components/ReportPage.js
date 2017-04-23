@@ -2,8 +2,10 @@
 var React = require("react");
 
 var ResultChart = require("./children/ResultChart");
+var helpers = require("./utils/helpers");
 
 import CountUp from 'react-countup';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
   
 
@@ -71,7 +73,16 @@ var ReportPage = React.createClass({
      <div className='reportTextContainer'>
      <h2 className='reportHeading'>Report Page</h2>
      <textarea className='reportTextInput' onChange={this.handleChange} value={this.props.report}></textarea>
-     <div className='reportPageButton' onClick={() => this.handleClick()}>BUTTON</div>
+     <div className='buttonHolder'>
+      <div className='reportPageButton' onClick={() => this.handleClick()}>BACK TO MAP</div>
+      <div className='reportPageButton' onClick={() => helpers.sendReport('test')}>EMAIL TO ME</div>
+
+      <CopyToClipboard text={this.props.report}
+          onCopy={() => this.setState({copied: true})}>
+          <div className='reportPageButton'>COPY TO CLIPBOARD</div>
+        </CopyToClipboard>
+      
+      </div>
      </div>
 
 

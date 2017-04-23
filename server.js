@@ -2,10 +2,20 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var config = require('./config.js')
+const nodemailer = require('nodemailer');
+var emailConfig = require('./emailConfig.js')
 
 var mysql = require("mysql");
 
 var connection = mysql.createConnection(config);
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: emailConfig.user,
+        pass: emailConfig.pw
+    }
+});
 
 
 
@@ -66,6 +76,27 @@ app.get("/mainSearch", function(req, res) {
   }
 });
 });
+
+app.post("/emailReport", function(req, res) {
+      let mailOptions = {
+        from: '"AppraiseLess" <doNotReply@appraiseless.com>', 
+        to: 'millschogan@gmail.com', 
+        subject: 'Your AppraiseLess.com Report', // Subject line
+        text: 'test'
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+    });
+    var dataObject = {
+        message: "Feedback sent successfully"
+    };
+})
+
+
 
 
 

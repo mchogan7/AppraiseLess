@@ -8,8 +8,9 @@ pids
 *.pid
 *.seed
 
-#config file
+#config files
 config.js
+emailConfig.js
 
 #bundle file
 bundle.js
