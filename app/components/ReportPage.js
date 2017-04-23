@@ -79,7 +79,7 @@ var ReportPage = React.createClass({
      <div className='reportChartContainer'>
      <div className='reportHeader'>PROTEST YOUR<br />APPRAISAL EVERY YEAR</div>
      <div className='chartKey'>
-     <span>POTENTIAL SAVINGS. </span><span className = 'boldText' style={{color:'rgb(0,115,188)'}}>PROTESTING </span>VS <span className = 'boldText' style={{color:'rgb(201,30,0)'}}>NOT PROTESTING</span>
+     <span>POTENTIAL SAVINGS - </span><span className = 'boldText' style={{color:'rgb(0,115,188)'}}>PROTESTING </span>VS <span className = 'boldText' style={{color:'rgb(201,30,0)'}}>NOT PROTESTING</span>
      
      </div>
      <div className='chartDivider'></div>
@@ -91,15 +91,17 @@ var ReportPage = React.createClass({
 
     <div className='reportTotalContainer'>
      <div className='dataAverage'>
+     <p className='reportTotalTen'>OVER 10 YEARS</p>
      <p className='reportTotalSmall'>YOU COULD SAVE</p>
      <p className='reportTotalLarge'>$<CountUp start={0} end={Math.round(data.totalSavings)} duration={.5} separator="," useGrouping={true}/></p>
-     <p className='reportTotalSmall'>OVER 10 YEARS</p>
+     <p className='reportTotalSmall'>TOTAL</p>
      </div>
 
      <div className='dataAverage'>
+     <p className='reportTotalTen'>OVER 10 YEARS</p>
      <p className='reportTotalSmall'>YOU COULD SAVE</p>
      <p className='reportTotalLarge'>$<CountUp start={0} end={Math.round(data.totalSavings / 120)} duration={.5} separator="," useGrouping={true}/></p>
-     <p className='reportTotalSmall'>ON AVERAGE PER MONTH</p>
+     <p className='reportTotalSmall'>PER MONTH AVG.</p>
      </div>
     </div>
     <div className='disclaimerText'>

@@ -136,16 +136,25 @@ var Main = React.createClass({
      var saved = this.sorter().saved
      var reportText = ''
      var home = this.state.home
+     var protestedValue = function(){
+      var total = 0
+      for (var i = 0; i < saved.length; i++) {
+        total += saved[i].appraised_val
+      }
+      return Math.round(total / saved.length).toLocaleString()
+     }
+
+
      reportText += 'My Property: \r\n'
      reportText += home.address + '\r\n'
      reportText += 'Property ID: ' + (home.prop_id) + '\r\n'
      reportText += 'Market Value: $' + (home.appraised_val).toLocaleString() + '\r\n'
      reportText += 'Assessed Value: $' + (home.assessed_val).toLocaleString() + '\r\n'
-     reportText += 'Square Feet: ' + (home.sqFeet) + ' ft. \r\n'
+     reportText += 'Square Feet: ' + (home.sqFeet) + ' \r\n'
      reportText += 'Lot Size: ' + (home.legal_acreage * .0001).toFixed(4) + ' acres \r\n'
      reportText += 'Year Built: ' + (home.yr_built) + '\r\n'
      reportText += '\r\n'
-     reportText += 'Based on the comparisons below, I believe my property should be valued at $' + Math.round((home.appraised_val / 1.0468)).toLocaleString() + '\r\n'
+     reportText += 'Based on the comparisons below, I believe my property should be valued at $' + protestedValue() + '\r\n'
      reportText += '\r\n'
      reportText += 'Comparable Properties:\r\n'
      reportText += '\r\n'
@@ -157,7 +166,7 @@ var Main = React.createClass({
          reportText += 'Property ID: ' + (saved[i].PROP_ID) + '\r\n'
          reportText += 'Market Value: $' + (saved[i].appraised_val).toLocaleString() + '\r\n'
          reportText += 'Assessed Value: $' + (saved[i].assessed_val).toLocaleString() + '\r\n'
-         reportText += 'Square Feet: ' + (saved[i].sqFeet) + ' ft. \r\n'
+         reportText += 'Square Feet: ' + (saved[i].sqFeet) + ' \r\n'
          reportText += 'Lot Size: ' + (saved[i].legal_acreage * .0001).toFixed(4) + ' acres \r\n'
          reportText += 'Year Built: ' + (saved[i].yr_built) + '\r\n'
          reportText += '\r\n'
