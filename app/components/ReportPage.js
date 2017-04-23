@@ -18,6 +18,10 @@ var ReportPage = React.createClass({
       this.navigateTo()
     },
 
+      handleChange: function(event) {
+      this.props.updateReport(event)
+   },
+
     houseValue: function() {
       //These values are used for all of the calculations. 
       var protestIncrease = .0468
@@ -66,7 +70,7 @@ var ReportPage = React.createClass({
      <div className='reportContainer'>
      <div className='reportTextContainer'>
      <h2 className='reportHeading'>Report Page</h2>
-     <textarea className='reportTextInput'>Place Holder</textarea>
+     <textarea className='reportTextInput' onChange={this.handleChange} value={this.props.report}></textarea>
      <div className='reportPageButton' onClick={() => this.handleClick()}>BUTTON</div>
      </div>
 
@@ -98,7 +102,9 @@ var ReportPage = React.createClass({
      <p className='reportTotalSmall'>ON AVERAGE PER MONTH</p>
      </div>
     </div>
- 
+    <div className='disclaimerText'>
+    <p>These are estimates only. Un-protested values assume a homestead exemption and 10% value increase year over year. Displayed protested values increase 4.68% year over year. The estimated tax rate is 2.2%. This may not reflect your situation and is only a general estimate. Your savings could be higher or lower than displayed. </p>
+    </div>
 
      </div>
  

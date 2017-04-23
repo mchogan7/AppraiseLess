@@ -443,6 +443,8 @@ h3 {
     resize: none;
     height: 50%;
     box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(0,23,51);
 }
 
 .chartHolder {
@@ -515,4 +517,12 @@ h3 {
 
 .boldText {
 	font-weight: 700;
+}
+
+.disclaimerText {
+	margin-top: 30px;
+	padding: 20px;
+	font-family: 'Open Sans', sans-serif;
+	color: rgb(78,78,78);
+	font-size: 12px;
 }
