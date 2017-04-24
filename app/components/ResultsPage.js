@@ -15,12 +15,16 @@ var ResultsPage = React.createClass({
       this.setState({view: selected})
   },
 
+  navigateTo: function(url){
+    this.props.history.push(url)
+  },
+
   render: function() {
     return (
      <div>
      <ResultsSideBar results = {this.props.results}
                      sendResults={this.props.sendResults}
-                     nav={this.nav}
+                     nav={this.navigateTo}
                      home={this.props.home}
                      changeStatus={this.props.changeStatus}
                      sorted={this.props.sorted}

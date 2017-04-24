@@ -22,7 +22,7 @@ var LandingPage = React.createClass({
      <h2 className='tagline'>Let us help you lower your property taxes.</h2>
      <SearchBar sendResults={this.props.sendResults} router={this.props.router} nav={this.navigateTo}/>
      <div className='footer'>
-     Will put some legal stuff down here. AppraiseLess 2017.
+     AppraiseLess provides comparable properties to support your property tax protest.<br />AppraiseLess makes no guarantees about the accuracy of the information (it is derived from TCAD's database) or the success of your protest.
      </div>
      </div>
     );

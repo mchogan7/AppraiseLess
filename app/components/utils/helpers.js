@@ -21,6 +21,18 @@ var helper = {
       }
     })
 },
+
+  sendReport: function(email, report) {
+    console.log(email)
+    return axios.post('/emailReport', {
+      params: {
+        email: email,
+        report: report
+      }
+    }).then(function(response) {
+        return response.data
+    });
+  },
   //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
   formatParams: function(object){
     var formatted = {
@@ -28,10 +40,10 @@ var helper = {
       xcoord: object.xcoord,
       ycoord: object.ycoord,
       valueLow: Math.floor(object.appraised_val * .65),
-      valueHigh: Math.floor(object.appraised_val *1.2),
-      feetLow: Math.floor(object.sqFeet * .7),
+      valueHigh: Math.floor(object.appraised_val *1),
+      feetLow: Math.floor(object.sqFeet * .8),
       feetHigh: Math.floor(object.sqFeet * 1.5),
-      landLow: Math.floor(object.legal_acreage * .3),
+      landLow: Math.floor(object.legal_acreage * .6),
       landHigh: Math.floor(object.legal_acreage * 2)
     }
     return formatted

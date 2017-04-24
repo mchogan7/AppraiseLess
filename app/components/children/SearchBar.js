@@ -24,11 +24,9 @@ var SearchBar = React.createClass({
   // This function will respond to the user inpu
   handleChange: function(event) {
       this.setState({ address: event.target.value })
-      console.log(event.target.value)
       var that = this
       if (event.target.value.length > 3) {
           helpers.getAutocomplete(event.target.value).then(function(autoResults) {
-              console.log(autoResults)
              that.setState({autoResults: autoResults})
           });
           

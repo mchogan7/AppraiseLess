@@ -14,13 +14,14 @@ import {
 
 var LandingPage = require("./LandingPage");
 var ResultsPage = require("./ResultsPage");
+var ReportPage = require("./ReportPage");
 
 // Main component. All data is passed through here.
 var Main = React.createClass({
 
   getInitialState: function() {
     return { home: {}, 
-            searchResults: [],
+            searchResults: []
             };
   }, 
 
@@ -29,6 +30,10 @@ var Main = React.createClass({
   this.setState({
       home: home,
       searchResults: results});
+  },
+
+  updateReport: function(event){
+      this.setState({ report: event.target.value })
   },
 
   changeStatus: function (id, newStatus){
@@ -50,12 +55,6 @@ var Main = React.createClass({
       //write the new array as search results
       this.setState({searchResults: newArray})  
       },
-
-      //I don't think we need to call componentUpdate functions at all in this case.
-  // componentWillUpdate() {
-  //   
-  //     this.sorter();
-  // },
 
 
   //When the state gets changed React will rerender the entire component based on changes.
@@ -133,9 +132,81 @@ var Main = React.createClass({
   
  },
 
-  render: function() {
+ generateReport: function() {
+     var saved = this.sorter().saved
+     var reportText = ''
+     var home = this.state.home
+     var protestedValue = function(){
+      var total = 0
+      for (var i = 0; i < saved.length; i++) {
+        total += saved[i].appraised_val
+      }
+      return Math.round(total / saved.length).toLocaleString()
+     }
 
+
+     reportText += 'My Property: \r\n'
+     reportText += home.address + '\r\n'
+     reportText += 'Property ID: ' + (home.prop_id) + '\r\n'
+     reportText += 'Market Value: $' + (home.appraised_val).toLocaleString() + '\r\n'
+     reportText += 'Assessed Value: $' + (home.assessed_val).toLocaleString() + '\r\n'
+     reportText += 'Square Feet: ' + (home.sqFeet) + ' \r\n'
+     reportText += 'Lot Size: ' + (home.legal_acreage * .0001).toFixed(4) + ' acres \r\n'
+     reportText += 'Year Built: ' + (home.yr_built) + '\r\n'
+     reportText += '\r\n'
+     reportText += 'Based on the comparisons below, I believe my property should be valued at $' + protestedValue() + '\r\n'
+     reportText += '\r\n'
+     reportText += 'Comparable Properties:\r\n'
+     reportText += '\r\n'
+
+
+     for (var i = 0; i < saved.length; i++) {
+         reportText += 'Comparable Property #' + (i + 1) + '\r\n'
+         reportText += saved[i].address + '\r\n'
+         reportText += 'Property ID: ' + (saved[i].PROP_ID) + '\r\n'
+         reportText += 'Market Value: $' + (saved[i].appraised_val).toLocaleString() + '\r\n'
+         reportText += 'Assessed Value: $' + (saved[i].assessed_val).toLocaleString() + '\r\n'
+         reportText += 'Square Feet: ' + (saved[i].sqFeet) + ' \r\n'
+         reportText += 'Lot Size: ' + (saved[i].legal_acreage * .0001).toFixed(4) + ' acres \r\n'
+         reportText += 'Year Built: ' + (saved[i].yr_built) + '\r\n'
+         reportText += '\r\n'
+
+         if (saved[i].appraised_val < home.appraised_val) {
+             reportText += 'This property is appraised $' + (home.appraised_val - saved[i].appraised_val).toLocaleString() + ' less. '
+         }
+
+
+         if (saved[i].sqFeet > home.sqFeet) {
+             reportText += 'It is ' + (saved[i].sqFeet - home.sqFeet) + ' square feet larger. '
+         }
+
+         if (saved[i].yr_built > home.yr_built) {
+             var difference = saved[i].yr_built - home.yr_built
+             if (difference > 1) {
+                 reportText += 'It is ' + difference + ' years newer. '
+             } else {
+                 reportText += 'It is one year newer.'
+             }
+         }
+
+         if (saved[i].legal_acreage > home.legal_acreage) {
+             var percentDif = Math.round((saved[i].legal_acreage - home.legal_acreage) / home.legal_acreage * 100)
+             if (percentDif > 1) {
+                 reportText += 'The lot size is ' + percentDif + "% larger."
+             }
+
+         }
+
+         reportText += '\r\n'
+         reportText += '\r\n'
+     }
+     return reportText
+ }
+,
+
+  render: function() {
     return (
+
       <Router>
         <div>
           <Redirect to="/home"/>
@@ -144,7 +215,7 @@ var Main = React.createClass({
 
             {/* Route for the landing page.*/}
             <Route path='/home' render={(props) => (
-            <LandingPage sendResults={this.sendSearchResults} nav={this.navigateTo} {...props} />
+            <LandingPage sendResults={this.sendSearchResults} {...props} />
             )} />
 
             {/* Route for the results page. The map and selection bar will be within this component*/}
@@ -152,11 +223,22 @@ var Main = React.createClass({
             <ResultsPage results={this.state.searchResults} 
                        home={this.state.home} {...props}
                        sendResults={this.sendSearchResults}
-                       nav={this.navigateTo}
                        changeStatus={this.changeStatus}
                        sorted={this.sorter()}
                         />
             )} />
+
+            <Route path='/ReportPage' render={(props) => (
+            <ReportPage updateReport={this.updateReport}
+                       home={this.state.home} {...props}
+                       saved={this.sorter().saved}
+                       report={this.generateReport()}
+                        />
+            )} />
+
+
+
+
           </Switch>
         </div>
       </Router>

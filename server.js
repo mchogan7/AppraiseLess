@@ -2,10 +2,20 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var config = require('./config.js')
+const nodemailer = require('nodemailer');
+var emailConfig = require('./emailConfig.js')
 
 var mysql = require("mysql");
 
 var connection = mysql.createConnection(config);
+
+let transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: emailConfig.user,
+        pass: emailConfig.pw
+    }
+});
 
 
 
@@ -28,7 +38,7 @@ app.get("/", function(req, res) {
 });
 
 //The Query for the auto complete
-var autoQuery = 'SELECT prop.prop_id, prop.legal_acreage, prop.land_hstd_val, prop.imprv_hstd_val, prop.imprv_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, prop.hs_exempt, prop.ov65_exempt, coords.xcoord, coords.ycoord, building.yr_built, prop.land_non_hstd_val, building.sqFeet FROM appraiseless.prop JOIN coords ON coords.PROP_ID = prop.prop_id JOIN building ON building.prop_id = prop.prop_id WHERE address LIKE ? LIMIT 5;'
+var autoQuery = 'SELECT prop.prop_id, prop.land_acres AS legal_acreage, prop.land_hstd_val, prop.imprv_hstd_val, prop.imprv_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, prop.hs_exempt, prop.ov65_exempt, coords.xcoord, coords.ycoord, building.yr_built, prop.land_non_hstd_val, building.sqFeet FROM appraiseless.prop JOIN coords ON coords.PROP_ID = prop.prop_id JOIN building ON building.prop_id = prop.prop_id WHERE address LIKE ? LIMIT 5;'
 
 
 app.get("/autocomplete", function(req, res) {
@@ -42,7 +52,7 @@ app.get("/autocomplete", function(req, res) {
 //The main query. The parameters are calculated client side before being sent over.
 
 //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
-var mainQuery = 'SELECT coords.PROP_ID, coords.xcoord, prop.imprv_hstd_val, prop.land_hstd_val, coords.ycoord, prop.legal_acreage, prop.imprv_non_hstd_val, prop.land_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, building.yr_built, building.sqFeet, ( 3959 * acos( cos( radians(?) ) * cos( radians( coords.ycoord ) ) * cos( radians( coords.xcoord ) - radians(?) ) + sin( radians(?) ) * sin(radians(coords.ycoord)) ) )AS distance FROM coords LEFT JOIN prop ON coords.PROP_ID = prop.prop_id LEFT JOIN building ON coords.PROP_ID = building.prop_id HAVING distance < 1 AND appraised_val BETWEEN ? AND ? AND sqFeet BETWEEN ? AND ? AND legal_acreage BETWEEN ? AND ? ORDER BY distance LIMIT 1 , 100;'
+var mainQuery = 'SELECT coords.PROP_ID, coords.xcoord, prop.imprv_hstd_val, prop.land_hstd_val, coords.ycoord, prop.land_acres AS legal_acreage, prop.imprv_non_hstd_val, prop.land_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, building.yr_built, building.sqFeet, ( 3959 * acos( cos( radians(?) ) * cos( radians( coords.ycoord ) ) * cos( radians( coords.xcoord ) - radians(?) ) + sin( radians(?) ) * sin(radians(coords.ycoord)) ) )AS distance FROM coords LEFT JOIN prop ON coords.PROP_ID = prop.prop_id LEFT JOIN building ON coords.PROP_ID = building.prop_id HAVING distance < 1 AND appraised_val BETWEEN ? AND ? AND sqFeet BETWEEN ? AND ? AND land_acres BETWEEN ? AND ? ORDER BY distance LIMIT 1 , 200;'
 
 
 app.get("/mainSearch", function(req, res) {
@@ -66,6 +76,27 @@ app.get("/mainSearch", function(req, res) {
   }
 });
 });
+
+app.post("/emailReport", function(req, res) {
+    let mailOptions = {
+        from: '"AppraiseLess" <doNotReply@appraiseless.com>',
+        to: req.body.params.email,
+        subject: 'Your AppraiseLess.com Report', 
+        text: req.body.params.report
+    };
+    // send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            return console.log(error);
+            res.send('mailError')
+        }
+        console.log('Message %s sent: %s', info.messageId, info.response);
+        res.send('mailSent')
+    });
+})
+
+
+
 
 
 
