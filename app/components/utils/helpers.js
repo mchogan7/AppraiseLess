@@ -22,11 +22,12 @@ var helper = {
     })
 },
 
-  sendReport: function(email) {
-    console.log('w00t!')
+  sendReport: function(email, report) {
+    console.log(email)
     return axios.post('/emailReport', {
       params: {
-        email: email
+        email: email,
+        report: report
       }
     }).then(function(response) {
         return response.data

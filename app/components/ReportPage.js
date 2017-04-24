@@ -12,58 +12,96 @@ import CopyToClipboard from 'react-copy-to-clipboard';
 
 var ReportPage = React.createClass({
 
-    navigateTo: function(){
-    this.props.history.push('/resultsPage')
-  },
+            getInitialState: function() {
+                return {
+                    modal: false,
+                    email: 'Enter Email Address'
+                };
+            },
 
-    handleClick: function(){
-      this.navigateTo()
-    },
-
-      handleChange: function(event) {
-      this.props.updateReport(event)
-   },
-
-    houseValue: function() {
-      //These values are used for all of the calculations. 
-      var protestIncrease = .0468
-      var nonProtestIncrease = .1
-      var taxRate = .022
-
-      //The arrays to be exported:
-      var protestedData = [Math.round(this.props.home.assessed_val / 1.0468)]
-      var nonProtestedData = [this.props.home.assessed_val]
-
-      //2 loops to fill the arrays. 
-      for (var i = 0; i < 9; i++) {
-          protestedData.push(Math.round(protestedData[i] + (protestedData[i] * protestIncrease)))
-      }
-
-      for (var i = 0; i < 9; i++) {
-          nonProtestedData.push(Math.round(nonProtestedData[i] + (nonProtestedData[i] * nonProtestIncrease)))
-      }
-
-      //calculate total tax paid for both data sets:
-      var protestedTotal = protestedData.reduce(function(a, b) {
-          return a + b;
-      }, 0) * taxRate;
-
-      var UnProtestedTotal = nonProtestedData.reduce(function(a, b) {
-          return a + b;
-      }, 0) * taxRate;
-
-      var totalSavings = Math.round(UnProtestedTotal - protestedTotal)
-      
-      var calculated = {
-          protested: protestedData,
-          nonProtested: nonProtestedData,
-          totalSavings: totalSavings
-      }
-
-      return calculated
+            handleChange: function(event) {
+                this.setState({ email: event.target.value })
+            },
 
 
-  },
+            navigateTo: function() {
+                this.props.history.push('/resultsPage')
+            },
+
+            handleClick: function() {
+                this.navigateTo()
+            },
+
+
+            houseValue: function() {
+                //These values are used for all of the calculations. 
+                var protestIncrease = .0468
+                var nonProtestIncrease = .1
+                var taxRate = .022
+
+                //The arrays to be exported:
+                var protestedData = [Math.round(this.props.home.assessed_val / 1.0468)]
+                var nonProtestedData = [this.props.home.assessed_val]
+
+                //2 loops to fill the arrays. 
+                for (var i = 0; i < 9; i++) {
+                    protestedData.push(Math.round(protestedData[i] + (protestedData[i] * protestIncrease)))
+                }
+
+                for (var i = 0; i < 9; i++) {
+                    nonProtestedData.push(Math.round(nonProtestedData[i] + (nonProtestedData[i] * nonProtestIncrease)))
+                }
+
+                //calculate total tax paid for both data sets:
+                var protestedTotal = protestedData.reduce(function(a, b) {
+                    return a + b;
+                }, 0) * taxRate;
+
+                var UnProtestedTotal = nonProtestedData.reduce(function(a, b) {
+                    return a + b;
+                }, 0) * taxRate;
+
+                var totalSavings = Math.round(UnProtestedTotal - protestedTotal)
+
+                var calculated = {
+                    protested: protestedData,
+                    nonProtested: nonProtestedData,
+                    totalSavings: totalSavings
+                }
+
+                return calculated
+
+
+            },
+
+            emailModal: function(bool) {
+                this.setState({ modal: bool })
+            },
+
+            stopPropagation: function(e) {
+                e.stopPropagation();
+                e.nativeEvent.stopImmediatePropagation();
+            },
+
+            inputClick: function() {
+                if (this.state.email === 'Enter Email Address') {
+                    this.setState({ email: "" });
+                }
+            },
+
+            emailClick: function(){
+              helpers.sendReport(this.state.email, this.props.report)
+              this.emailModal(false);
+            },
+
+            handleCopy: function(){
+            var that = this
+            this.setState({copied: true})
+            setTimeout(function(){ 
+              that.setState({copied: false})
+            }, 3000);
+            },
+
 
 
   render: function() {
@@ -71,18 +109,27 @@ var ReportPage = React.createClass({
     return (
      <div className='reportContainer'>
      <div className='reportTextContainer'>
-     <h2 className='reportHeading'>Report Page</h2>
+     <h2 className='reportHeading'>YOUR PROTEST</h2>
+     <p className='protestInst'>This report is a starting point for your protest. We will need to get the exact instructions in this area. Try to fit it into five or so sentences. Anymore and I doubt people will read it. This is the last bit of content that needs writing.</p>
      <textarea className='reportTextInput' onChange={this.handleChange} value={this.props.report}></textarea>
      <div className='buttonHolder'>
       <div className='reportPageButton' onClick={() => this.handleClick()}>BACK TO MAP</div>
-      <div className='reportPageButton' onClick={() => helpers.sendReport('test')}>EMAIL TO ME</div>
+      <div className='reportPageButton' onClick={() => this.emailModal(true)}>EMAIL TO ME</div>
 
       <CopyToClipboard text={this.props.report}
-          onCopy={() => this.setState({copied: true})}>
-          <div className='reportPageButton'>COPY TO CLIPBOARD</div>
+          onCopy={() => this.handleCopy()}>
+          <div className='reportPageButton'>{this.state.copied ? 'COPIED!' : 'COPY TO CLIPBOARD'}</div>
         </CopyToClipboard>
-      
-      </div>
+        </div>
+
+        {this.state.modal &&
+        <div className='emailModal' onClick={() => this.emailModal(false)}>
+        <div className='emailPanel'  onClick={this.stopPropagation}>
+        <input className='emailInput' value={this.state.email} onChange={this.handleChange} onClick={this.inputClick}/>
+        <div className='emailButton' onClick={this.emailClick}>SEND</div>
+        </div>
+        </div>
+       }
      </div>
 
 

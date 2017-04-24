@@ -78,23 +78,23 @@ app.get("/mainSearch", function(req, res) {
 });
 
 app.post("/emailReport", function(req, res) {
-      let mailOptions = {
-        from: '"AppraiseLess" <doNotReply@appraiseless.com>', 
-        to: 'millschogan@gmail.com', 
-        subject: 'Your AppraiseLess.com Report', // Subject line
-        text: 'test'
+    let mailOptions = {
+        from: '"AppraiseLess" <doNotReply@appraiseless.com>',
+        to: req.body.params.email,
+        subject: 'Your AppraiseLess.com Report', 
+        text: req.body.params.report
     };
     // send mail with defined transport object
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             return console.log(error);
+            res.send('mailError')
         }
         console.log('Message %s sent: %s', info.messageId, info.response);
+        res.send('mailSent')
     });
-    var dataObject = {
-        message: "Feedback sent successfully"
-    };
 })
+
 
 
 

@@ -38,6 +38,13 @@ var ResultsSideBar = React.createClass({
     }
   },
 
+  reportNavigate(sorted){
+    if(sorted.length >= 3) {
+       this.props.nav('/ReportPage')
+    }
+   
+  },
+
   render: function() {
     var tab = this.props.tab  
   	var results = this.props.results
@@ -118,7 +125,12 @@ var ResultsSideBar = React.createClass({
       
       </Scrollbars>
       <div className='divider'></div>
-     <div className='reportButton' onClick={() => this.props.nav('/ReportPage')}>GENERATE PROTEST</div>
+     <div className='reportButton' onClick={() => this.reportNavigate(sorted.saved)}>
+     {sorted.saved.length < 3 && 
+      <span> SAVE AT LEAST {3 - sorted.saved.length} MORE {sorted.saved.length > 1 ? 'PROPERTY' : 'PROPERTIES'}</span>}
+      {sorted.saved.length >= 3 && 
+      <span>GENERATE PROTEST</span>}
+     </div>
      </div>
     );
   }
