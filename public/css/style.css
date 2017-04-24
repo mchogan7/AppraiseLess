@@ -149,6 +149,7 @@ body {
 }
 
 .sideBarPropHolder {
+    position: relative;
     font-family: 'Open Sans', sans-serif;
     color: rgb(78, 78, 78);
     box-sizing: border-box;
@@ -156,6 +157,10 @@ body {
     padding-right: 7px;
     padding-bottom: 7px;
     width: 100%;
+    left: 0px;
+    top: 0px;
+    transition: height .5s;
+
 }
 
 .sideBarHomeHolder {
@@ -246,6 +251,10 @@ h3 {
     opacity: .1;
     transform: rotate(0deg);
     transition: transform .5s
+}
+
+.arrowDown{
+   transform: rotate(90deg); 
 }
 
 
@@ -628,4 +637,26 @@ h3 {
     color: white;
     background-color: rgb(0,115,188); 
 
+}
+
+.slideOut-enter {
+  height: 0;
+}
+
+.slideOut-enter.slideOut-enter-active {
+  height: 0px;
+  transition: height .5s;
+}
+
+.slideOut-leave {
+  height: 166px;
+  left: 0px;
+}
+
+.slideOut-leave.slideOut-leave-active {
+  height: 0px;
+  left: -600px;
+  top: 0px;
+  padding-bottom: 0px;
+  transition: all .5s;
 }

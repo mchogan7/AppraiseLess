@@ -9,7 +9,7 @@ var SideBarProperty = React.createClass({
   getInitialState: function() {
     return { searchActive: false,
               toggleHeight: {height:'50px'},
-              rotate: {transform: 'rotate(0deg)'}, 
+              rotate: 'propArrow', 
               toggle: false};
   },
   //Functions compares two values and returns a color.
@@ -25,9 +25,9 @@ var SideBarProperty = React.createClass({
 
   toggle: function(){
     if (this.state.toggle === true){
-      this.setState({toggle:false, toggleHeight: {height:'50px'}, rotate: {transform: 'rotate(0deg)'} })
+      this.setState({toggle:false, toggleHeight: {height:'50px'}, rotate: 'propArrow' })
     } else {
-      this.setState({toggle:true, toggleHeight: {height:'150px'}, rotate: {transform: 'rotate(90deg)'}})
+      this.setState({toggle:true, toggleHeight: {height:'150px'}, rotate: 'propArrow arrowDown'})
     }
   },
 
@@ -63,7 +63,7 @@ var SideBarProperty = React.createClass({
         <div className='oneThird propInfo'>Year Built:<span style={this.compare(homeYear, propYear)}> {propYear}</span></div>
         <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
         <div className='oneThird propInfo'><span style={this.compare(homeLot, propLot)}>Lot: {(propLot * .0001).toFixed(4)} acres</span></div>
-        <img src="./images/Arrow.svg" className='propArrow' style={this.state.rotate}/>
+        <img src="./images/Arrow.svg" className={this.state.rotate}/>
          <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
          <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
          <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>

@@ -5,6 +5,7 @@ var SideBarProperty = require("./SideBarProperty");
 var SideBarHome = require("./SideBarHome");
 var SearchBarResultsPage = require("./SearchBarResultsPage");
 import { Scrollbars } from 'react-custom-scrollbars';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 var blue = {color:'rgb(0,115,188)'}
 var green = {color:'rgb(40,199,142)'}
@@ -80,23 +81,38 @@ var ResultsSideBar = React.createClass({
         autoHeightMin={'calc(100vh - 247px)'}>
 
         <div className='tabSpacer'></div>
-
+            
       {tab === 'search' &&
-         sorted.search.map(function(result, i) {
+
+          <CSSTransitionGroup
+          transitionName="slideOut"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+
+         {sorted.search.map(function(result, i) {
                      return (
+   
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
                                home = {home} 
                                indexNumber={i + 1} 
                                changeStatus={changeStatus}
                                color={{backgroundColor: 'rgb(0,115,188)'}}/>
-     
-            );
+                );
           })
-      }
+       }
+           </CSSTransitionGroup>
 
+      }
+      
       {tab === 'saved' &&
-         sorted.saved.map(function(result, i) {
+
+         <CSSTransitionGroup
+          transitionName="slideOut"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+
+         {sorted.saved.map(function(result, i) {
                      return (
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
@@ -107,10 +123,18 @@ var ResultsSideBar = React.createClass({
      
             );
           })
+       }
+       </CSSTransitionGroup>
       }
 
       {tab === 'dismissed' &&
-         sorted.dismissed.map(function(result, i) {
+
+       <CSSTransitionGroup
+          transitionName="slideOut"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+
+         {sorted.dismissed.map(function(result, i) {
                      return (
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
@@ -121,6 +145,8 @@ var ResultsSideBar = React.createClass({
      
             );
           })
+       }
+       </CSSTransitionGroup>
       }
       
       </Scrollbars>
