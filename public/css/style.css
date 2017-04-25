@@ -270,6 +270,11 @@ h3 {
     width: 469px;
 }
 
+.autoCompleteHolder {
+    position: relative;
+    z-index: 9999;
+}
+
 .blackOut {
     position: absolute;
     z-index: 9000;
@@ -451,11 +456,15 @@ h3 {
 .reportTextInput {
     width: 100%;
     padding: 10px;
-    resize: none;
-    height: 60%;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     color: rgb(0,23,51);
+    background-color: white;
+    height: 60vh;
+    overflow-y: auto;
+    resize: none;
+    border: none;
+    outline: none;
 }
 
 .chartHolder {
@@ -660,3 +669,98 @@ h3 {
   padding-bottom: 0px;
   transition: all .5s;
 }
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 3000ms ease-in;
+}
+
+
+@media only screen and (max-width: 600px) {
+   .landingLogo {
+    width: 100%;
+}
+
+    .tagline{
+        margin-bottom: 0px;
+        margin-left: auto;
+        margin-right: auto;
+        width: 80%;
+    }
+
+    .autoSearchBar{
+        width: 90vw;
+        padding: 20px;
+    }
+
+    .searchInput {
+        width: calc(90vw - 18px);
+    }
+
+    .autoText {
+        font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .sideBarContainer {
+        margin-top: 40vh;
+        width: 100%;
+        bottom: 0;
+        box-shadow: 1px -3px 2px 1px rgba(0, 0, 0, 0.1);
+    }
+
+     .mapContainer {
+        position: fixed;
+        width: 100%;
+        height: 40vh;
+        top: 0;
+        margin:0;
+    }
+
+    .searchInputResults{
+        margin-left: 7px;
+        margin-right: 7px;
+        width: calc(100% - 31px);
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .autoSearchBarResults{
+        margin-top: 7px;
+        width: 100%;
+    }
+
+    .sideBarTab {
+        font-size: 14px;
+    }
+
+    .numberHolder {
+       left: 7px; 
+    }
+
+    .sideBarProp{
+        padding-left: 56px;
+    }
+
+    .dismissButton, .saveButton {
+        width: 46%;
+        font-size: 12px;
+    }
+
+
+ 
+}
+
+@media only screen and (max-width: 368px) {
+
+       .propInfo {
+        font-size: 9px;
+    }
+
+    }

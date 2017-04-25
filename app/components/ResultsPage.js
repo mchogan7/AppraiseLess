@@ -22,6 +22,7 @@ var ResultsPage = React.createClass({
   render: function() {
     return (
      <div>
+
      <ResultsSideBar results = {this.props.results}
                      sendResults={this.props.sendResults}
                      nav={this.navigateTo}
@@ -31,10 +32,13 @@ var ResultsPage = React.createClass({
                      tab={this.state.view}
                      tabSelect={this.tabSelect}
                      />
+
      <GoogleMap sorted={this.props.sorted} 
                 home={this.props.home}
                 tab={this.state.view}
                 />
+
+
      
      </div>
     );

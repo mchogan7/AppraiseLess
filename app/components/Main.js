@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom'
  
  import { withRouter } from 'react-router'
+ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 
 
@@ -136,15 +137,16 @@ var Main = React.createClass({
      var saved = this.sorter().saved
      var reportText = ''
      var home = this.state.home
+     
      var protestedValue = function(){
       var total = 0
       for (var i = 0; i < saved.length; i++) {
         total += saved[i].appraised_val
       }
-      return Math.round(total / saved.length).toLocaleString()
+      return Math.round(total / saved.length)
      }
-
-
+     reportText += 'If e-filing, you will have a character limit of 1024. You may need to shorten the protest below accordingly. \r\n'
+     reportText += '\r\n'
      reportText += 'My Property: \r\n'
      reportText += home.address + '\r\n'
      reportText += 'Property ID: ' + (home.prop_id) + '\r\n'
@@ -172,7 +174,7 @@ var Main = React.createClass({
          reportText += '\r\n'
 
          if (saved[i].appraised_val < home.appraised_val) {
-             reportText += 'This property is appraised $' + (home.appraised_val - saved[i].appraised_val).toLocaleString() + ' less. '
+             reportText += 'This nearby property is appraised $' + (home.appraised_val - saved[i].appraised_val).toLocaleString() + ' less. '
          }
 
 
@@ -200,7 +202,12 @@ var Main = React.createClass({
          reportText += '\r\n'
          reportText += '\r\n'
      }
-     return reportText
+
+          var reportData = {
+            reportText: reportText,
+            suggestedValue: protestedValue() 
+          } 
+     return reportData
  }
 ,
 
@@ -212,10 +219,10 @@ var Main = React.createClass({
           <Redirect to="/home"/>
           <Switch>
             {/* This is the main routes setup. You can pass props in the component after the render statement.*/}
-
+           
             {/* Route for the landing page.*/}
             <Route path='/home' render={(props) => (
-            <LandingPage sendResults={this.sendSearchResults} {...props} />
+            <LandingPage  sendResults={this.sendSearchResults} {...props} />
             )} />
 
             {/* Route for the results page. The map and selection bar will be within this component*/}

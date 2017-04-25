@@ -7,10 +7,8 @@ var helpers = require("./utils/helpers");
 import CountUp from 'react-countup';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-  
 
-
-var ReportPage = React.createClass({
+  var ReportPage = React.createClass({
 
             getInitialState: function() {
                 return {
@@ -40,7 +38,7 @@ var ReportPage = React.createClass({
                 var taxRate = .022
 
                 //The arrays to be exported:
-                var protestedData = [Math.round(this.props.home.assessed_val / 1.0468)]
+                var protestedData = [parseInt(this.props.report.suggestedValue)]
                 var nonProtestedData = [this.props.home.assessed_val]
 
                 //2 loops to fill the arrays. 
@@ -90,7 +88,7 @@ var ReportPage = React.createClass({
             },
 
             emailClick: function(){
-              helpers.sendReport(this.state.email, this.props.report)
+              helpers.sendReport(this.state.email, this.props.report.reportText)
               this.emailModal(false);
             },
 
@@ -106,17 +104,20 @@ var ReportPage = React.createClass({
 
   render: function() {
     var data = this.houseValue()
+    var suggestedValue = this.props.report.suggestedValue
     return (
      <div className='reportContainer'>
      <div className='reportTextContainer'>
      <h2 className='reportHeading'>YOUR PROTEST</h2>
-     <p className='protestInst'>This report is a starting point for your protest. We will need to get the exact instructions in this area. Try to fit it into five or so sentences. Anymore and I doubt people will read it. This is the last bit of content that needs writing.</p>
-     <textarea className='reportTextInput' onChange={this.handleChange} value={this.props.report}></textarea>
+     <p className='protestInst'>This report is a starting point for your protest. You will need to add your opinion of value if e-filing (this is optional for paper protests). A suggested opinion of value is ${(suggestedValue).toLocaleString()}. This is the average market value of the comparable properties you chose. As a general rule, however, you should write in the lowest opinion of value that you believe you can support.</p>
+   
+     <textarea className='reportTextInput'>{this.props.report.reportText}</textarea>
+     
      <div className='buttonHolder'>
       <div className='reportPageButton' onClick={() => this.handleClick()}>BACK TO MAP</div>
       <div className='reportPageButton' onClick={() => this.emailModal(true)}>EMAIL TO ME</div>
 
-      <CopyToClipboard text={this.props.report}
+      <CopyToClipboard text={this.props.report.reportText}
           onCopy={() => this.handleCopy()}>
           <div className='reportPageButton'>{this.state.copied ? 'COPIED!' : 'COPY TO CLIPBOARD'}</div>
         </CopyToClipboard>

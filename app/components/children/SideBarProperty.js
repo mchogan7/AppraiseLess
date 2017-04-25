@@ -62,7 +62,7 @@ var SideBarProperty = React.createClass({
         
         <div className='oneThird propInfo'>Year Built:<span style={this.compare(homeYear, propYear)}> {propYear}</span></div>
         <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
-        <div className='oneThird propInfo'><span style={this.compare(homeLot, propLot)}>Lot: {(propLot * .0001).toFixed(4)} acres</span></div>
+        <div className='oneThird propInfo'>Lot: <span style={this.compare(homeLot, propLot)}>{(propLot * .0001).toFixed(4)} acres</span></div>
         <img src="./images/Arrow.svg" className={this.state.rotate}/>
          <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
          <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
