@@ -145,7 +145,9 @@ var Main = React.createClass({
       }
       return Math.round(total / saved.length)
      }
-     reportText += 'If e-filing, you will have a character limit of 1024. You may need to shorten the protest below accordingly. \r\n'
+     reportText += 'Copy this report into your word-processor of choice, or click the button below to have it emailed to you. \r\n'
+     reportText += '\r\n'
+     reportText += 'Be sure to request the CAD evidence packet so that TCAD will send you the list of comparable sales they used to appraise your property. If e-filing, you will have a character limit of 1024. You may need to shorten the protest below accordingly.  \r\n'
      reportText += '\r\n'
      reportText += 'My Property: \r\n'
      reportText += home.address + '\r\n'
@@ -156,7 +158,7 @@ var Main = React.createClass({
      reportText += 'Lot Size: ' + (home.legal_acreage * .0001).toFixed(4) + ' acres \r\n'
      reportText += 'Year Built: ' + (home.yr_built) + '\r\n'
      reportText += '\r\n'
-     reportText += 'Based on the comparisons below, I believe my property should be valued at $' + protestedValue() + '\r\n'
+     reportText += 'Based on the comparisons below, I believe my property should be valued at $__________.\r\n'
      reportText += '\r\n'
      reportText += 'Comparable Properties:\r\n'
      reportText += '\r\n'
