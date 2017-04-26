@@ -40,7 +40,7 @@ var ResultsSideBar = React.createClass({
   },
 
   reportNavigate(sorted){
-    if(sorted.length >= 0) {
+    if(sorted.length >= 3) {
        this.props.nav('/ReportPage')
     }
    
