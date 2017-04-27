@@ -30,6 +30,8 @@ body {
 }
 
 .autoSearchBar {
+    position: relative;
+    z-index: 10;
     display: block;
     margin: auto;
     width: 500px;
@@ -79,13 +81,14 @@ body {
 }
 
 .footer {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(78, 78, 78);
     padding: 20px;
     width: 100%;
-    position: absolute;
-    bottom: 0px;
     text-align: center;
     color: rgb(158, 158, 158);
     font-size: 12px;
@@ -757,6 +760,8 @@ h3 {
     .reportTotalLarge {
         font-size: 40px; 
     }
+
+
 }
 
 @media only screen and (max-width: 500px) {
