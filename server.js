@@ -4,6 +4,7 @@ var bodyParser = require("body-parser");
 var config = require('./config.js')
 const nodemailer = require('nodemailer');
 var emailConfig = require('./emailConfig.js')
+var expressStaticGzip = require("express-static-gzip");
 
 var mysql = require("mysql");
 
@@ -20,6 +21,8 @@ let transporter = nodemailer.createTransport({
 
 
 
+
+
 // Create Instance of Express
 var app = express();
 // Sets an initial port. We'll use this later in our listener
@@ -29,6 +32,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
+
+app.use("/", expressStaticGzip("./public"));
 
 app.use(express.static("./public"));
 

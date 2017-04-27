@@ -95,6 +95,7 @@ var ResultsSideBar = React.createClass({
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
                                home = {home} 
+                               view = 'search'
                                indexNumber={i + 1} 
                                changeStatus={changeStatus}
                                color={{backgroundColor: 'rgb(0,115,188)'}}/>
@@ -116,7 +117,8 @@ var ResultsSideBar = React.createClass({
                      return (
               <SideBarProperty key ={result.PROP_ID} 
                                info={result} 
-                               home = {home} 
+                               home = {home}
+                               view = 'saved'
                                indexNumber={i + 1} 
                                changeStatus={changeStatus}
                                color={{backgroundColor: 'rgb(40,199,142)', color: 'white'}}/>
@@ -140,6 +142,7 @@ var ResultsSideBar = React.createClass({
                                info={result} 
                                home = {home} 
                                indexNumber="-"
+                               view='dismissed'
                                changeStatus={changeStatus}
                                color={{backgroundColor: 'rgb(201,30,0)', color: 'white', fontSize: '40px', lineHeight: '25px'}}/>
      

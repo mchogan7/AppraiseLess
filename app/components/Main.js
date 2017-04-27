@@ -93,9 +93,9 @@ var Main = React.createClass({
    //This function should work when search[] has zero objects and when it has 9
    if (search.length < 10) {
      var i = 10 - search.length;
-     console.log("i = " + i);
+  
      while (i > 0) {
-       console.log("Pop from store, push to search, swap a status");
+      
        //Go ahead and decrement i
        i--;
        //Pop from store[], push to search[]

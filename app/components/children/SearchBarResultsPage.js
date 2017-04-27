@@ -29,7 +29,7 @@ var SearchBar = React.createClass({
       var that = this
       if (event.target.value.length > 3) {
           helpers.getAutocomplete(event.target.value).then(function(autoResults) {
-              console.log(autoResults)
+              
              that.setState({autoResults: autoResults})
              if(that.state.autoResults.length > 0){
               blackout(true)
@@ -57,7 +57,7 @@ var SearchBar = React.createClass({
   },
 
    componentWillReceiveProps(nextProps){
-    console.log(nextProps)
+ 
     if(nextProps.searchActive != this.props.searchActive){
       if (this.props.searchActive){this.resetSearch()}
     }

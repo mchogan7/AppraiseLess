@@ -67,8 +67,23 @@ var SideBarProperty = React.createClass({
          <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
          <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
          <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>
+
+         {this.props.view === "saved" &&
         <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
+      }
+      
+        {this.props.view === "dismissed" &&
         <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
+        }
+
+      {/* This is a horrible quick fix, will fix after presentation. */}
+         {this.props.view === "search" &&
+         <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
+       }
+
+         {this.props.view === "search" &&
+         <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
+       }
         </div>
      </div>
     );
