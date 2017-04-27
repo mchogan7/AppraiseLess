@@ -1,16 +1,16 @@
 /*
-	font-family: 'Open Sans', sans-serif;
-	font-family: 'Muli', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
 
-	darkblue: rgb(0,23,51);
-	standardblue: rgb(0,115,188);
-	standardyellow: rgb(255,202,0);
-	darkgray: rgb(78,78,78);
-	lightgray: rgb(158,158,158);
-	bgGray: rgb(225,225,225);
-	deselectGray: rgb(189,189,189);
-	red: rgb(201,30,0);
-	green: rgb(40,199,142);
+    darkblue: rgb(0,23,51);
+    standardblue: rgb(0,115,188);
+    standardyellow: rgb(255,202,0);
+    darkgray: rgb(78,78,78);
+    lightgray: rgb(158,158,158);
+    bgGray: rgb(225,225,225);
+    deselectGray: rgb(189,189,189);
+    red: rgb(201,30,0);
+    green: rgb(40,199,142);
 */
 
 body {
@@ -79,7 +79,7 @@ body {
 }
 
 .footer {
-	box-sizing: border-box;
+    box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
     background-color: rgb(78, 78, 78);
     padding: 20px;
@@ -108,6 +108,7 @@ body {
     background-color: white;
     height: 45px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: background-color .2s;
     transition: background-color .2s;
     cursor: pointer;
 }
@@ -159,6 +160,7 @@ body {
     width: 100%;
     left: 0px;
     top: 0px;
+    -webkit-transition: height .5s;
     transition: height .5s;
 
 }
@@ -178,8 +180,10 @@ body {
     background-color: white;
     height: 50px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    -webkit-transition: background-color .2s;
     transition: background-color .2s;
     cursor: pointer;
+    -webkit-transition: height .5s;
     transition: height .5s;
     overflow-y: hidden;
     overflow-x: hidden;
@@ -249,17 +253,22 @@ h3 {
     top: 17px;
     width: 30px;
     opacity: .1;
-    transform: rotate(0deg);
-    transition: transform .5s
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+    -webkit-transition: -webkit-transform .5s;
+    transition: -webkit-transform .5s;
+    transition: transform .5s;
+    transition: transform .5s, -webkit-transform .5s
 }
 
 .arrowDown{
-   transform: rotate(90deg); 
+   -webkit-transform: rotate(90deg);
+           transform: rotate(90deg); 
 }
 
 
 /*.propArrow:hover {
-	transform: rotate(90deg);
+    transform: rotate(90deg);
 }*/
 
 .autoCompleteHolderResults {
@@ -342,6 +351,7 @@ h3 {
     color: rgb(189, 189, 189);
     margin-top: 10px;
     margin-bottom: 15px;
+    -webkit-transition: color .2s;
     transition: color .2s;
 }
 
@@ -350,6 +360,7 @@ h3 {
     width: 33%;
     height: 3px;
     background-color: rgb(0, 115, 188);
+    -webkit-transition: margin-left .2s, background-color .2s;
     transition: margin-left .2s, background-color .2s;
 }
 
@@ -431,6 +442,8 @@ h3 {
 }
 
 .reportContainer {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     width: 100%;
     box-sizing: border-box;
@@ -439,7 +452,9 @@ h3 {
 .reportTextContainer {
     position: relative;
     box-sizing: border-box;
-    flex: 0 0 50%;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 50%;
+            flex: 0 0 50%;
     width: 50%;
     background-color: rgb(255, 202, 0);
     padding: 20px;
@@ -512,9 +527,13 @@ h3 {
 .reportTotalContainer {
     box-sizing: border-box;
     width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-	margin-top: 20px;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin-top: 20px;
 }
 
 .reportHeader {
@@ -530,57 +549,58 @@ h3 {
 }
 
 .chartKey {
-	color: white;
-	font-family: 'Open Sans', sans-serif;
-	font-weight: 400;
-	padding-left: 20px;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    padding-left: 20px;
     padding-right: 20px;
 }
 
 .chartDivider {
-	box-sizing: border-box;
-	height: 10px;
-	border-bottom: solid 1px rgb(78,78,78);
-	margin-left: 20px;
-	margin-right: 20px;
+    box-sizing: border-box;
+    height: 10px;
+    border-bottom: solid 1px rgb(78,78,78);
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .boldText {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 .disclaimerText {
-	margin-top: 30px;
-	padding: 20px;
-	font-family: 'Open Sans', sans-serif;
-	color: rgb(78,78,78);
-	font-size: 12px;
+    margin-top: 30px;
+    padding: 20px;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(78,78,78);
+    font-size: 12px;
 }
 
 .buttonHolder{
-	margin-top: 2px;
-	text-align: center;
+    margin-top: 2px;
+    text-align: center;
 }
 
 .reportPageButton {
-	cursor: pointer;
-	font-size: 12px;
-	margin-left: 3px;
-	margin-right: 3px;
-	font-family: 'Open Sans', sans-serif;
-	text-align: center;
-	color: rgb(158,158,158);
-	display: inline-block;
-	width: 30%;
-	background-color: rgb(0,23,51);
-	height: 40px;
-	line-height: 40px;
-	transition: color .2s, background-color .2s;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 3px;
+    margin-right: 3px;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: rgb(158,158,158);
+    display: inline-block;
+    width: 30%;
+    background-color: rgb(0,23,51);
+    height: 40px;
+    line-height: 40px;
+    -webkit-transition: color .2s, background-color .2s;
+    transition: color .2s, background-color .2s;
 }
 
 .reportPageButton:hover {
-	color: white;
-	background-color: rgb(0,115,188); 
+    color: white;
+    background-color: rgb(0,115,188); 
 }
 
 .reportHeading {
@@ -643,6 +663,7 @@ h3 {
     text-align: center;
     font-family: 'Open Sans', sans-serif;
     color: rgb(158,158,158);
+    -webkit-transition: color .2s, background-color .2s;
     transition: color .2s, background-color .2s;
 }
 
@@ -658,6 +679,7 @@ h3 {
 
 .slideOut-enter.slideOut-enter-active {
   height: 0px;
+  -webkit-transition: height .5s;
   transition: height .5s;
 }
 
@@ -671,6 +693,7 @@ h3 {
   left: -600px;
   top: 0px;
   padding-bottom: 0px;
+  -webkit-transition: all .5s;
   transition: all .5s;
 }
 
@@ -681,6 +704,7 @@ h3 {
 
 .fade-enter.fade-enter-active {
   opacity: 1;
+  -webkit-transition: opacity 3000ms ease-in;
   transition: opacity 3000ms ease-in;
 }
 
