@@ -15,6 +15,7 @@
 
 body {
     width: 100%;
+    min-height:100%;
 }
 
 .searchContainer {
@@ -378,7 +379,14 @@ h3 {
     height: 7px;
 }
 
+.scrollContent {
+    height: calc(100vh - 247px) 
+}
+
 .reportButton {
+    position: absolute;
+    width: 469px;
+    bottom: 7px;
     margin-top: 8px;
     background-color: rgb(40, 199, 142);
     color: white;

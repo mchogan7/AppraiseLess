@@ -77,9 +77,10 @@ var ResultsSideBar = React.createClass({
         autoHide
         autoHideTimeout={1000}
         autoHideDuration={200}
-        autoHeight
-        autoHeightMin={'calc(100vh - 247px)'}>
-
+        autoHeight = {true}
+        autoHeightMax = {9000}
+        >
+        <div className='scrollContent'>
         <div className='tabSpacer'></div>
             
       {tab === 'search' &&
@@ -151,8 +152,9 @@ var ResultsSideBar = React.createClass({
        }
        </CSSTransitionGroup>
       }
-      
+      </div>
       </Scrollbars>
+
       <div className='divider'></div>
      <div className='reportButton' onClick={() => this.reportNavigate(sorted.saved)}>
      {sorted.saved.length < 3 && 
