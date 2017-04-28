@@ -10,18 +10,18 @@ var helper = {
         search: search + '%'
       }
     }).then(function(response) {
-        return response.data
+      return response.data
     });
   },
   //this function sends the search parameters to the server to run the query.
-    getMainSearch: function(search) {
+  getMainSearch: function(search) {
     return axios.get('/mainSearch', {
       params: {
         search
       }
     })
-},
-
+  },
+  //This function is used to send a report to a user-provided email address.
   sendReport: function(email, report) {
     console.log(email)
     return axios.post('/emailReport', {
@@ -33,7 +33,7 @@ var helper = {
         return response.data
     });
   },
-  //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
+  //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh.
   formatParams: function(object){
     var formatted = {
       address: object.address,
@@ -51,11 +51,9 @@ var helper = {
 
   //This is a shameless Stackoverflow copy-paste job.
   toTitleCase: function(str)
-{
+  {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-}
-
+  }
 };
-
 
 module.exports = helper;
