@@ -38,9 +38,7 @@ app.get("/", function(req, res) {
 var autoQuery = 'SELECT prop.prop_id, prop.land_acres AS legal_acreage, prop.land_hstd_val, prop.imprv_hstd_val, prop.imprv_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, prop.hs_exempt, prop.ov65_exempt, coords.xcoord, coords.ycoord, building.yr_built, prop.land_non_hstd_val, building.sqFeet FROM appraiseless.prop JOIN coords ON coords.PROP_ID = prop.prop_id JOIN building ON building.prop_id = prop.prop_id WHERE address LIKE ? LIMIT 5;'
 
 app.get("/autocomplete", function(req, res) {
-    console.log(req.query.search)
     connection.query(autoQuery, [req.query.search], function(error, results, fields) {
-        console.log(results)
         res.send(results)
     });
 });
@@ -62,7 +60,6 @@ app.get("/mainSearch", function(req, res) {
         sent.landLow,
         sent.landHigh
     ]
-    console.log(params)
       connection.query(mainQuery, params, function(error, results, fields) {
       res.send(results)
       if(error){
