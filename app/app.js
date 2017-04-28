@@ -6,7 +6,6 @@ import {
   Link
 } from 'react-router-dom'
 
-
 var Main = require("./components/Main");
 
 ReactDOM.render(<Main />, document.getElementById("app"));

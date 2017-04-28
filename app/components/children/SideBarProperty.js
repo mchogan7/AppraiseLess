@@ -1,10 +1,15 @@
-// Include React
-var React = require("react");
+///////////////////////////////////////////////////////////////////////
+//                                                                   //
+//                                                                   //
+//                     Property Component for Sidebar                //
+//                                                                   //
+//                                                                   //
+///////////////////////////////////////////////////////////////////////
+//USED BY: ResultsSideBar.js
 
+var React = require("react");
 var helpers = require("../utils/helpers");
 
-
-// Creating the Main component
 var SideBarProperty = React.createClass({
   getInitialState: function() {
     return { searchActive: false,
@@ -54,41 +59,41 @@ var SideBarProperty = React.createClass({
     return (
      <div className='sideBarPropHolder'>
         <div className='sideBarProp' style={this.state.toggleHeight} onClick={() => this.handleClick()}>
-        <div className='numberHolder' style={this.props.color}>{circNumber}</div>
-        <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
+          <div className='numberHolder' style={this.props.color}>{circNumber}</div>
+          <h3>{helpers.toTitleCase(this.props.info.address)}</h3>
+          
+          <div className='propMarket'>
+            Market: <span style={this.compare(propValue, homeValue)}>${(propValue).toLocaleString()}</span>
+          </div>
+          
+          <div className='oneThird propInfo'>Year Built:<span style={this.compare(homeYear, propYear)}> {propYear}</span></div>
+          <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
+          <div className='oneThird propInfo'>Lot: <span style={this.compare(homeLot, propLot)}>{(propLot * .0001).toFixed(4)} acres</span></div>
+          <img src="./images/Arrow.svg" className={this.state.rotate}/>
+          <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
+          <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
+          <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>
+
+          {this.props.view === "saved" &&
+            <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
+          }
         
-        <div className='propMarket'>
-        Market: <span style={this.compare(propValue, homeValue)}>${(propValue).toLocaleString()}</span></div>
-        
-        <div className='oneThird propInfo'>Year Built:<span style={this.compare(homeYear, propYear)}> {propYear}</span></div>
-        <div className='oneThirdish propInfo'>Sqft: <span style={this.compare(homeFeet, propFeet)}>{propFeet}</span></div>
-        <div className='oneThird propInfo'>Lot: <span style={this.compare(homeLot, propLot)}>{(propLot * .0001).toFixed(4)} acres</span></div>
-        <img src="./images/Arrow.svg" className={this.state.rotate}/>
-         <div className='oneThird propInfo topSpacer'>Land: ${(this.props.info.land).toLocaleString()}</div>
-         <div className='oneThird propInfo'>Building: ${(this.props.info.building).toLocaleString()}</div>
-         <a className='tcadLink' href={'http://propaccess.traviscad.org/clientdb/Property.aspx?prop_id=' + this.props.info.PROP_ID + '&year=2017'} target="_blank">TCAD Link</a>
+          {this.props.view === "dismissed" &&
+            <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
+          }
 
-         {this.props.view === "saved" &&
-        <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
-      }
-      
-        {this.props.view === "dismissed" &&
-        <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
-        }
+          {/* This is a horrible quick fix, will fix after presentation. */}
+          {this.props.view === "search" &&
+            <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
+          }
 
-      {/* This is a horrible quick fix, will fix after presentation. */}
-         {this.props.view === "search" &&
-         <div className='saveButton' onClick={() => this.handleSaveDismissClick('saved')}>SAVE FOR PROTEST</div>
-       }
-
-         {this.props.view === "search" &&
-         <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
-       }
+          {this.props.view === "search" &&
+            <div className='dismissButton' onClick={() => this.handleSaveDismissClick('dismissed')}>DISMISS FOR NOW</div>
+          }
         </div>
-     </div>
+      </div>
     );
   }
 });
 
-// Export the component back for use in other files
 module.exports = SideBarProperty;
