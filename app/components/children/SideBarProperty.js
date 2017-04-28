@@ -28,6 +28,7 @@ var SideBarProperty = React.createClass({
     }
   },
 
+  //Used below, in handleClick()
   toggle: function(){
     if (this.state.toggle === true){
       this.setState({toggle:false, toggleHeight: {height:'50px'}, rotate: 'propArrow' })
@@ -36,14 +37,16 @@ var SideBarProperty = React.createClass({
     }
   },
 
+  //When a sidebar property item is clicked, it either expands or contracts
   handleClick: function(){
     this.toggle()
   },
 
+  //When a sidebar property item is saved or dismissed, the status is changed here
   handleSaveDismissClick: function(status){
     this.props.changeStatus(this.props.info.PROP_ID, status)
   },
-
+  
   render: function() {
     //Declared these as vars to improve readabilty.
     var propValue = this.props.info.appraised_val

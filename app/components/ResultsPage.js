@@ -15,6 +15,7 @@ var ResultsPage = React.createClass({
     return { view: "search"};
   },
 
+  //Sets view to selected tab
   tabSelect: function(selected){
     this.setState({view: selected})
   },

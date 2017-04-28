@@ -17,6 +17,7 @@ var LandingPage = React.createClass({
           history: []
       };
   },
+  //Used when we move to the results page (i.e., when an autocompleted address is selected)
   navigateTo: function() {
       this.props.history.push('/resultsPage')
   },

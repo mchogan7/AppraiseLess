@@ -21,20 +21,22 @@ var ReportPage = React.createClass({
         };
     },
 
+    //Sets email to entered address
     handleChange: function(event) {
         this.setState({ email: event.target.value })
     },
 
-
+    //Used in handleClick() below
     navigateTo: function() {
         this.props.history.push('/resultsPage')
     },
 
+    //Go back to the results page
     handleClick: function() {
         this.navigateTo()
     },
 
-
+    //Calculates data for use in report
     houseValue: function() {
         //These values are used for all of the calculations. 
         var protestIncrease = .0468
@@ -74,26 +76,31 @@ var ReportPage = React.createClass({
         return calculated
     },
 
+    //Used below, in emailClick()
     emailModal: function(bool) {
         this.setState({ modal: bool })
     },
 
+    //Stops propagation!
     stopPropagation: function(e) {
         e.stopPropagation();
         e.nativeEvent.stopImmediatePropagation();
     },
 
+    //Sets email if it hasn't already been set
     inputClick: function() {
         if (this.state.email === 'Enter Email Address') {
             this.setState({ email: "" });
         }
     },
 
+    //Sends email to user-provided address
     emailClick: function(){
         helpers.sendReport(this.state.email, this.props.report.reportText)
         this.emailModal(false);
     },
 
+    //Copies report to clipboard 
     handleCopy: function(){
         var that = this
         this.setState({copied: true})

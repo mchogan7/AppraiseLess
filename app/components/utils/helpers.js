@@ -20,8 +20,8 @@ var helper = {
         search
       }
     })
-},
-
+  },
+  //This function is used to send a report to a user-provided email address.
   sendReport: function(email, report) {
     console.log(email)
     return axios.post('/emailReport', {
@@ -33,7 +33,7 @@ var helper = {
         return response.data
     });
   },
-  //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
+  //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh.
   formatParams: function(object){
     var formatted = {
       address: object.address,

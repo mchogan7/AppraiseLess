@@ -43,17 +43,19 @@ var SearchBar = React.createClass({
     }
   },
 
-  //Clears out the search bar when clicked.
+  //Clears out the search bar when clicked
   handleClick: function(event) {
     if(this.state.address === 'Start new search...'){
       this.setState({ address: "" });
     }
   },
 
+  //Used below, in componentwillReceiveProps()
   resetSearch: function(){
     this.setState({ address: "Start new search..." , autoResults: []});
   },
 
+  //Resets the search anytime the page changes
   componentWillReceiveProps(nextProps){
     if(nextProps.searchActive != this.props.searchActive){
       if (this.props.searchActive){this.resetSearch()}

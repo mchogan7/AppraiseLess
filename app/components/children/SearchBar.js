@@ -25,6 +25,8 @@ var SearchBar = React.createClass({
     };
   },
 
+  //On change, if at least three characters have been entered...
+  //call for some Autocomplete results
   handleChange: function(event) {
     this.setState({ address: event.target.value })
     var that = this
@@ -37,6 +39,7 @@ var SearchBar = React.createClass({
     }
   },
 
+  //On submit, query DB for 100 search results
   handleSubmit: function(event) {
     event.preventDefault();
     // Set the parent to have the search term

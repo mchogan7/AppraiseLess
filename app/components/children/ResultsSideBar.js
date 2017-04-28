@@ -25,14 +25,17 @@ var ResultsSideBar = React.createClass({
     return {searchActive: false};
   },
 
+  //Used below, in clearClick()
   blackify: function(bool){
     this.setState({searchActive: bool})
   },
 
+  //Uses blackify() to set searchActive to false
   clearClick: function(){
     this.blackify(false)
   },
 
+  //Used to select from "Store," "Saved," and "Dismissed" tabs
   tabSelectorSlider: function(){
     if (this.props.tab === 'saved'){
       return {marginLeft: '33%', backgroundColor: 'rgb(40,199,142)'}
@@ -43,11 +46,11 @@ var ResultsSideBar = React.createClass({
     }
   },
 
+  //Used to move to the report page (as long as there are at least 3 saved properties)
   reportNavigate(sorted){
     if(sorted.length >= 3) {
       this.props.nav('/ReportPage')
     }
-   
   },
 
   render: function() {
@@ -72,6 +75,7 @@ var ResultsSideBar = React.createClass({
 
         <SideBarHome home = {this.props.home} />
 
+        {/* All three tabs are generated here */}
         <div className= 'tabContainer'>
           <div onClick={() => this.props.tabSelect('search')} className='sideBarTab' style={tab === 'search' ? blue : gray}>SEARCH</div>
           <div onClick={() => this.props.tabSelect('saved')}className='sideBarTab' style={tab === 'saved' ? green : gray}>SAVED</div>
@@ -79,6 +83,7 @@ var ResultsSideBar = React.createClass({
           <div className='tabSelector' style={this.tabSelectorSlider()}></div>
         </div>
 
+        {/* Scrollbar component*/}
         <Scrollbars
           autoHide
           autoHideTimeout={1000}
@@ -87,7 +92,8 @@ var ResultsSideBar = React.createClass({
           autoHeightMin={'calc(100vh - 247px)'}>
 
           <div className='tabSpacer'></div>
-                
+          
+          {/* 'Search' tab selected*/}  
           {tab === 'search' &&
 
               <CSSTransitionGroup
@@ -110,6 +116,7 @@ var ResultsSideBar = React.createClass({
             </CSSTransitionGroup>
           }
           
+          {/* 'Saved' tab selected*/}
           {tab === 'saved' &&
 
               <CSSTransitionGroup
@@ -133,6 +140,7 @@ var ResultsSideBar = React.createClass({
             </CSSTransitionGroup>
           }
 
+          {/* 'Dismissed' tab selected*/}
           {tab === 'dismissed' &&
 
             <CSSTransitionGroup
@@ -158,6 +166,7 @@ var ResultsSideBar = React.createClass({
         
         </Scrollbars>
         <div className='divider'></div>
+        {/* 'Generate Protest' button */}
         <div className='reportButton' onClick={() => this.reportNavigate(sorted.saved)}>
           {sorted.saved.length < 3 && 
             <span> SAVE AT LEAST {3 - sorted.saved.length} MORE {sorted.saved.length > 1 ? 'PROPERTY' : 'PROPERTIES'}</span>}

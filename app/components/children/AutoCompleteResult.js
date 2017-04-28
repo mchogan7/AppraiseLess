@@ -23,9 +23,7 @@ var AutoCompleteResult = React.createClass({
 
   //When a user chooses an address from the autocompleted results...
   //we query the server using getMainSearch() from helpers.js, then...
-  //we sort the results and send them to [???]
-  //Additionally, if the user is already on the searchResults page...
-  //we do [???]
+  //we sort the results and send them to the calling component
   handleClick: function(send, sendResults, nav, location, reset, blackout, home) {
     helpers.getMainSearch(send).then(function(response) {
       

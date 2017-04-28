@@ -36,10 +36,12 @@ var Main = React.createClass({
       searchResults: results});
   },
 
+  //This function is used any time we need to change the report once it has already been generated.
   updateReport: function(event){
     this.setState({ report: event.target.value })
   },
 
+  //This function is used to change the status of a property in the search results array
   changeStatus: function (id, newStatus){
 
     //Grab the search results array so we can modify it.
@@ -88,8 +90,6 @@ var Main = React.createClass({
     var saved = searchResults.filter(isSaved);
     var dismissed = searchResults.filter(isDismissed);
 
-
-
     //Here, we check to see if we need to fill up search[], i.e., if it contains fewer than 10 objects
     //If it does, we take the appropriate number of "store" objects and make them "search" objects
     //This function should work when search[] has zero objects and when it has 9
@@ -97,7 +97,6 @@ var Main = React.createClass({
       var i = 10 - search.length;
   
       while (i > 0) {
-      
         //Go ahead and decrement i
         i--;
         //Pop from store[], push to search[]
@@ -113,26 +112,20 @@ var Main = React.createClass({
       }
     }
 
-
-  //At this point, the goal is for all five of our arrays to be accurate
-  //Here, we set the state using our five arrays
- 
-
-  //Instead of updating state, we have the function return an object.
-  //This can then be passed down as a prop to wherever it needs to go. (I think)
-  //I have not tried to pass this down as a prop yet, but i think it will work.
+    //Create, and return, an object with four sorted arrays, one for each status
     var sorted = {
       search: search, 
       saved: saved, 
       dismissed: dismissed, 
       store: store
     }
-    
-    return sorted
+    return sorted;
+
     //somehow this doesn't cause an infinite loop.
     this.setState({searchResults: searchResults})       
   },
 
+  //Our report page is generated here
   generateReport: function() {
     var saved = this.sorter().saved
     var reportText = ''
@@ -203,6 +196,7 @@ var Main = React.createClass({
       reportText += '\r\n'
     }
 
+    //Create, and return, an object with all of the reportText plus the suggested value of your protest
     var reportData = {
       reportText: reportText,
       suggestedValue: protestedValue() 
@@ -234,6 +228,7 @@ var Main = React.createClass({
                         />
             )} />
 
+            {/* Route for the report page. */}
             <Route path='/ReportPage' render={(props) => (
             <ReportPage updateReport={this.updateReport}
                        home={this.state.home} {...props}
@@ -249,5 +244,4 @@ var Main = React.createClass({
   }
 });
 
-// Export the component back for use in other files
 module.exports = Main;
