@@ -63,6 +63,53 @@ var ResultsSideBar = React.createClass({
     return (
       <div className="sideBarContainer">
         {this.state.searchActive &&
+
+        <div className='blackOut' onClick={() => this.clearClick()}></div>
+      }
+     
+      <SearchBarResultsPage sendResults={sendResults} 
+                            router={this.props.router} 
+                            nav={null} 
+                            blackout={this.blackify}
+                            searchActive={this.state.searchActive}
+                            />
+
+              <SideBarHome home = {this.props.home} />
+              <div className= 'tabContainer'>
+              <div onClick={() => this.props.tabSelect('search')} className='sideBarTab' style={tab === 'search' ? blue : gray}>SEARCH</div>
+              <div onClick={() => this.props.tabSelect('saved')}className='sideBarTab' style={tab === 'saved' ? green : gray}>SAVED</div>
+              <div onClick={() => this.props.tabSelect('dismissed')}className='sideBarTab' style={tab === 'dismissed' ? red : gray}>DISMISSED</div>
+              <div className='tabSelector' style={this.tabSelectorSlider()}></div>
+              </div>
+      <Scrollbars
+        autoHide
+        autoHideTimeout={1000}
+        autoHideDuration={200}
+        autoHeight = {true}
+        autoHeightMax = {9000}
+        >
+        <div className='scrollContent'>
+        <div className='tabSpacer'></div>
+            
+      {tab === 'search' &&
+
+          <CSSTransitionGroup
+          transitionName="slideOut"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}>
+
+         {sorted.search.map(function(result, i) {
+
+                     return (
+   
+              <SideBarProperty key ={result.PROP_ID} 
+                               info={result} 
+                               home = {home} 
+                               view = 'search'
+                               indexNumber={i + 1} 
+                               changeStatus={changeStatus}
+                               color={{backgroundColor: 'rgb(0,115,188)'}}/>
+
           <div className='blackOut' onClick={() => this.clearClick()}></div>
         }
   

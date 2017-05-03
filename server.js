@@ -39,6 +39,7 @@ var autoQuery = 'SELECT prop.prop_id, prop.land_acres AS legal_acreage, prop.lan
 
 app.get("/autocomplete", function(req, res) {
     connection.query(autoQuery, [req.query.search], function(error, results, fields) {
+        console.log(results)
         res.send(results)
     });
 });
@@ -61,6 +62,7 @@ app.get("/mainSearch", function(req, res) {
         sent.landHigh
     ]
       connection.query(mainQuery, params, function(error, results, fields) {
+        console.log(results)
       res.send(results)
       if(error){
           console.log(error)
