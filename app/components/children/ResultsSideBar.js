@@ -91,6 +91,7 @@ var ResultsSideBar = React.createClass({
           transitionLeaveTimeout={500}>
 
          {sorted.search.map(function(result, i) {
+
                      return (
    
               <SideBarProperty key ={result.PROP_ID} 
