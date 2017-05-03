@@ -5,7 +5,6 @@ var config = require('./config.js')
 const nodemailer = require('nodemailer');
 var emailConfig = require('./emailConfig.js')
 var expressStaticGzip = require("express-static-gzip");
-
 var mysql = require("mysql");
 
 var connection = mysql.createConnection(config);
@@ -18,11 +17,6 @@ let transporter = nodemailer.createTransport({
     }
 });
 
-
-
-
-
-
 // Create Instance of Express
 var app = express();
 // Sets an initial port. We'll use this later in our listener
@@ -32,9 +26,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
-
 app.use("/", expressStaticGzip("./public"));
-
 app.use(express.static("./public"));
 
 // Main "/" Route. This will redirect the user to our rendered React application
@@ -45,7 +37,6 @@ app.get("/", function(req, res) {
 //The Query for the auto complete
 var autoQuery = 'SELECT prop.prop_id, prop.land_acres AS legal_acreage, prop.land_hstd_val, prop.imprv_hstd_val, prop.imprv_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, prop.hs_exempt, prop.ov65_exempt, coords.xcoord, coords.ycoord, building.yr_built, prop.land_non_hstd_val, building.sqFeet FROM appraiseless.prop JOIN coords ON coords.PROP_ID = prop.prop_id JOIN building ON building.prop_id = prop.prop_id WHERE address LIKE ? LIMIT 5;'
 
-
 app.get("/autocomplete", function(req, res) {
     connection.query(autoQuery, [req.query.search], function(error, results, fields) {
         console.log(results)
@@ -54,10 +45,8 @@ app.get("/autocomplete", function(req, res) {
 });
 
 //The main query. The parameters are calculated client side before being sent over.
-
 //xcoord, ycoord, xcoord, valueLow, valueHigh, feetLow, feetHigh, landLow, landHigh
 var mainQuery = 'SELECT coords.PROP_ID, coords.xcoord, prop.imprv_hstd_val, prop.land_hstd_val, coords.ycoord, prop.land_acres AS legal_acreage, prop.imprv_non_hstd_val, prop.land_non_hstd_val, prop.appraised_val, prop.assessed_val, prop.address, building.yr_built, building.sqFeet, ( 3959 * acos( cos( radians(?) ) * cos( radians( coords.ycoord ) ) * cos( radians( coords.xcoord ) - radians(?) ) + sin( radians(?) ) * sin(radians(coords.ycoord)) ) )AS distance FROM coords LEFT JOIN prop ON coords.PROP_ID = prop.prop_id LEFT JOIN building ON coords.PROP_ID = building.prop_id HAVING distance < 1 AND appraised_val BETWEEN ? AND ? AND sqFeet BETWEEN ? AND ? AND land_acres BETWEEN ? AND ? ORDER BY distance LIMIT 1 , 200;'
-
 
 app.get("/mainSearch", function(req, res) {
     var sent = JSON.parse(req.query.search)
@@ -76,9 +65,9 @@ app.get("/mainSearch", function(req, res) {
         console.log(results)
       res.send(results)
       if(error){
-      console.log(error)
-  }
-});
+          console.log(error)
+      }
+    });
 });
 
 app.post("/emailReport", function(req, res) {
@@ -98,13 +87,6 @@ app.post("/emailReport", function(req, res) {
         res.send('mailSent')
     });
 })
-
-
-
-
-
-
-
 
 //Autocomplete will return results with the address 
 //and the coordinates that will then be plugged into this crazy query:
@@ -145,12 +127,10 @@ app.post("/emailReport", function(req, res) {
 // WHERE address LIKE '4810 p%'
 // LIMIT 5;
 
-
 // Listener
 app.get('*', function(req, res) {
     res.redirect('/');
 });
-
 
 app.listen(PORT, function() {
     console.log("App listening on PORT: " + PORT);
