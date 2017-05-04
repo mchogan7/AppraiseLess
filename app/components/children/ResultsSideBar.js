@@ -112,7 +112,7 @@ var ResultsSideBar = React.createClass({
                                   )
           
         }
-        <div className='blackOut' onClick={() => this.clearClick()}></div>
+       
   
         <SearchBarResultsPage sendResults={sendResults} 
                               router={this.props.router} 
