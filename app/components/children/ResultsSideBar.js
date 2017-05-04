@@ -109,9 +109,10 @@ var ResultsSideBar = React.createClass({
                                indexNumber={i + 1} 
                                changeStatus={changeStatus}
                                color={{backgroundColor: 'rgb(0,115,188)'}}/>
-
-          <div className='blackOut' onClick={() => this.clearClick()}></div>
+                                  )
+          
         }
+        <div className='blackOut' onClick={() => this.clearClick()}></div>
   
         <SearchBarResultsPage sendResults={sendResults} 
                               router={this.props.router} 
